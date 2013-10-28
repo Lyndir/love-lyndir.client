@@ -17,27 +17,16 @@
 //
 
 #import "LLButtonView.h"
+#import "LLModel.h"
 
 @implementation LLButtonView
-
-- (id)init {
-
-    if (!(self = [super init]))
-        return nil;
-    
-    [self setImage:[UIImage imageNamed:@"love-lyndir.button.grey.png"] forState:UIControlStateNormal];
-    [self addTarget:self action:@selector(didTapButton) forControlEvents:UIControlEventTouchUpInside];
-
-    return self;
-}
 
 - (id)initWithFrame:(CGRect)frame {
 
     if (!(self = [super initWithFrame:frame]))
         return nil;
-    
-    [self setImage:[UIImage imageNamed:@"love-lyndir.button.grey.png"] forState:UIControlStateNormal];
-    [self addTarget:self action:@selector(didTapButton) forControlEvents:UIControlEventTouchUpInside];
+
+    [self setup];
 
     return self;
 }
@@ -47,10 +36,25 @@
     if (!(self = [super initWithCoder:coder]))
         return nil;
 
-    [self setImage:[UIImage imageNamed:@"love-lyndir.button.grey.png"] forState:UIControlStateNormal];
-    [self addTarget:self action:@selector(didTapButton) forControlEvents:UIControlEventTouchUpInside];
+    [self setup];
 
     return self;
+}
+
+- (void)setup {
+
+    [self addTarget:self action:@selector(didTapButton) forControlEvents:UIControlEventTouchUpInside];
+
+    [self setImage:[LLModel sharedModel].buttonImage forState:UIControlStateNormal];
+    [[NSNotificationCenter defaultCenter] addObserverForName:LLLoveLevelUpdatedNotification object:nil queue:[NSOperationQueue mainQueue]
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [self setImage:[LLModel sharedModel].buttonImage forState:UIControlStateNormal];
+                                                  }];
+}
+
+- (void)dealloc {
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didTapButton {

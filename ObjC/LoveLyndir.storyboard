@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XyJ-Bw-Nvu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XyJ-Bw-Nvu">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
-        <!--View Controller - About Love Lyndir-->
+        <!--View Controller - About-->
         <scene sceneID="HrL-JD-r7M">
             <objects>
                 <viewController id="7UK-33-K8I" sceneMemberID="viewController">
@@ -18,38 +18,40 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1H-N1-IRX">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="20" y="0.0" width="280" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">Love Lyndir is an innitiative by Maarten Billemont to make all apps available free of charge to everyone, as well as to make all source code for these applications available publicly under open source licenses.
+                                <string key="text">Love Lyndir is an initiative by Maarten Billemont to make all apps available free of charge to everyone, as well as to make their source code available publicly under open source licenses.
 
-The result is high-quality applications that are available for everyone's benefit, can be freely modified and improved by the whole world, rather than being trapped into a proprietory maintenance deadlock.
+The result is high-quality applications that are available for everyone's benefit.  Additionally, they can be freely modified and improved on by amateur and professional developers worldwide, rather than being trapped in a proprietary maintenance deadlock.
 
-It also means everybody ranging from children to students, people with modest incomes and people just interested in evaluating a new app, can enjoy the full scope of Lyndir's apps without restrictions and without intrusive ads.
+It also means everybody ranging from children to students, people with modest incomes to those just interested in evaluating a new app, can enjoy the full scope of Lyndir's apps without restrictions and without intrusive ads.
 
 All Lyndir's development is funded by the Love Lyndir campaign, which involves giving all users the freedom of choice for making contributions.  If you feel Lyndir's apps are worth something, please consider making a small or larger monthly contribution.  Without your contributions, this campaign cannot survive.
 
-Note that Love Lyndir is a global campaign: Signing up from within this app will enable Love Lyndir for you within all of Lyndir's apps.  You do not pay per app.  You pay to support the development and maintenance of all Lyndir's apps.
+Finally, note that Love Lyndir is a global campaign: Signing up from within this app will enable Love Lyndir for you within all of Lyndir's apps.  You do not pay per app.  You pay to support the development and maintenance of all Lyndir's apps.
 
 If you have any questions, comments or insights, I welcome an open dialog at info@lyndir.com
 
-Thank you for envoying this app,
+Thank you for enjoying this app,
+
 Maarten Billemont,
-Sole Proprietor, Lyndir.</mutableString>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+Sole Proprietor, Lyndir.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="k1H-N1-IRX" firstAttribute="leading" secondItem="e6A-Xe-Bio" secondAttribute="leading" id="PI2-I0-9vV"/>
+                            <constraint firstItem="k1H-N1-IRX" firstAttribute="leading" secondItem="e6A-Xe-Bio" secondAttribute="leading" constant="20" symbolic="YES" id="PI2-I0-9vV"/>
                             <constraint firstItem="IMq-Zg-OKw" firstAttribute="top" secondItem="k1H-N1-IRX" secondAttribute="bottom" id="Wm5-5T-FpT"/>
-                            <constraint firstAttribute="trailing" secondItem="k1H-N1-IRX" secondAttribute="trailing" id="e0V-Id-52p"/>
+                            <constraint firstAttribute="trailing" secondItem="k1H-N1-IRX" secondAttribute="trailing" constant="20" symbolic="YES" id="e0V-Id-52p"/>
                             <constraint firstItem="k1H-N1-IRX" firstAttribute="top" secondItem="e6A-Xe-Bio" secondAttribute="top" id="ywW-yT-fws"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="About Love Lyndir" id="Y2B-pw-1LV"/>
+                    <navigationItem key="navigationItem" title="About" id="Y2B-pw-1LV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="lo2-0B-QHk"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1R2-Uw-eno" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -67,9 +69,12 @@ Sole Proprietor, Lyndir.</mutableString>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="CFb-Vf-sPq">
-                                <rect key="frame" x="20" y="72" width="280" height="294"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="CFb-Vf-sPq">
+                                <rect key="frame" x="20" y="72" width="280" height="292"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="1" constant="280" id="GSD-sV-IPv"/>
+                                </constraints>
                                 <attributedString key="attributedText">
                                     <fragment content="Love Lyndir">
                                         <attributes>
@@ -138,80 +143,112 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="love-lyndir.picker.png" translatesAutoresizingMaskIntoConstraints="NO" id="hbj-yw-kOi">
-                                <rect key="frame" x="58" y="424" width="204" height="11"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for the iTunes store." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" enabled="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="HGP-rO-FpN">
+                                <rect key="frame" x="20" y="372" width="280" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="204" id="ZPW-08-4wM"/>
-                                    <constraint firstAttribute="height" constant="11" id="a72-rj-dXv"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXW-Gi-iZ0">
-                                <rect key="frame" x="45" y="386" width="32" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="fef-aM-2hU"/>
-                                    <constraint firstAttribute="height" constant="30" id="mqt-DS-vFi"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" image="love-lyndir.button.grey.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="B8g-0Z-plN" appends="YES" id="VEJ-fF-rs5"/>
-                                </connections>
-                            </button>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.99$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8T9-b0-uIb">
-                                <rect key="frame" x="120" y="443" width="80" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="M6e-R5-Slv"/>
-                                    <constraint firstAttribute="height" constant="17" id="auU-xt-NoH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <color key="textColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaN-0q-Nxz">
-                                <rect key="frame" x="20" y="443" width="80" height="17"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJd-AB-16B">
+                                <rect key="frame" x="20" y="372" width="280" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXW-Gi-iZ0">
+                                        <rect key="frame" x="25" y="0.0" width="32" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="mqt-DS-vFi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" image="love-lyndir.heart.grey.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="B8g-0Z-plN" appends="YES" id="VEJ-fF-rs5"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="love-lyndir.picker.png" translatesAutoresizingMaskIntoConstraints="NO" id="hbj-yw-kOi">
+                                        <rect key="frame" x="38" y="38" width="204" height="11"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="204" id="ZPW-08-4wM"/>
+                                            <constraint firstAttribute="height" constant="11" id="a72-rj-dXv"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="8T9-b0-uIb">
+                                        <rect key="frame" x="100" y="57" width="80" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="M6e-R5-Slv"/>
+                                            <constraint firstAttribute="height" constant="31" id="auU-xt-NoH"/>
+                                        </constraints>
+                                        <string key="text">Loved
+0.99$</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <color key="textColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="VaN-0q-Nxz">
+                                        <rect key="frame" x="0.0" y="57" width="80" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="a7K-BU-7b0"/>
+                                            <constraint firstAttribute="height" constant="31" id="aWd-xt-ZLV"/>
+                                        </constraints>
+                                        <string key="text">Free
+ </string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="ahc-vK-4H1">
+                                        <rect key="frame" x="200" y="57" width="80" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="jOx-HA-Cv2"/>
+                                            <constraint firstAttribute="width" constant="80" id="w8l-se-f5y"/>
+                                        </constraints>
+                                        <string key="text">Awesome
+4.99$</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="a7K-BU-7b0"/>
+                                    <constraint firstItem="ahc-vK-4H1" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="ELv-5w-sa9"/>
+                                    <constraint firstItem="hbj-yw-kOi" firstAttribute="centerX" secondItem="VaN-0q-Nxz" secondAttribute="centerX" constant="100" id="JJl-On-S3u"/>
+                                    <constraint firstItem="hXW-Gi-iZ0" firstAttribute="top" secondItem="vJd-AB-16B" secondAttribute="top" id="Nmv-in-k7p"/>
+                                    <constraint firstItem="hbj-yw-kOi" firstAttribute="top" secondItem="hXW-Gi-iZ0" secondAttribute="bottom" constant="8" id="RGk-Wg-FAE"/>
+                                    <constraint firstItem="hbj-yw-kOi" firstAttribute="centerX" secondItem="hXW-Gi-iZ0" secondAttribute="centerX" constant="99" id="jBd-Lm-2aE"/>
+                                    <constraint firstAttribute="height" constant="88" id="mtS-fh-jdr"/>
+                                    <constraint firstItem="8T9-b0-uIb" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="o1m-5J-sFF"/>
+                                    <constraint firstItem="ahc-vK-4H1" firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" constant="100" id="t6g-A2-7T4"/>
+                                    <constraint firstItem="hbj-yw-kOi" firstAttribute="centerX" secondItem="8T9-b0-uIb" secondAttribute="centerX" id="vGl-N2-Mf6"/>
+                                    <constraint firstItem="VaN-0q-Nxz" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="vX8-TG-1uK"/>
+                                    <constraint firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" id="xZz-vD-yvI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.99$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahc-vK-4H1">
-                                <rect key="frame" x="220" y="443" width="80" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="w8l-se-f5y"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hXW-Gi-iZ0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CFb-Vf-sPq" secondAttribute="bottom" constant="20" id="2im-Wf-Ftd"/>
-                            <constraint firstItem="G4l-yq-jvb" firstAttribute="top" secondItem="8T9-b0-uIb" secondAttribute="bottom" constant="20" id="7zC-DC-jDk"/>
-                            <constraint firstItem="ahc-vK-4H1" firstAttribute="trailing" secondItem="hbj-yw-kOi" secondAttribute="trailing" constant="38" id="Akb-hq-ztQ"/>
-                            <constraint firstItem="hXW-Gi-iZ0" firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" constant="-99" id="EDO-vu-BPO"/>
+                            <constraint firstItem="vJd-AB-16B" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="20" id="HgI-ur-fOk"/>
                             <constraint firstItem="CFb-Vf-sPq" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="20" id="JPe-fT-vNw"/>
-                            <constraint firstItem="8T9-b0-uIb" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="LY5-9P-gRr"/>
                             <constraint firstAttribute="trailing" secondItem="CFb-Vf-sPq" secondAttribute="trailing" constant="20" id="Nxl-ko-tCn"/>
-                            <constraint firstItem="hbj-yw-kOi" firstAttribute="leading" secondItem="VaN-0q-Nxz" secondAttribute="leading" constant="38" id="OuW-FJ-fVK"/>
-                            <constraint firstItem="hbj-yw-kOi" firstAttribute="centerX" secondItem="8T9-b0-uIb" secondAttribute="centerX" id="ZuJ-tw-fPE"/>
-                            <constraint firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" id="e9b-qs-Hqo"/>
-                            <constraint firstItem="hbj-yw-kOi" firstAttribute="top" secondItem="hXW-Gi-iZ0" secondAttribute="bottom" constant="8" id="nJs-8f-xrB"/>
-                            <constraint firstItem="ahc-vK-4H1" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="o6n-P1-Eiy"/>
-                            <constraint firstItem="VaN-0q-Nxz" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="oHc-hA-iNp"/>
+                            <constraint firstAttribute="trailing" secondItem="vJd-AB-16B" secondAttribute="trailing" constant="20" id="PEb-B5-Gaq"/>
+                            <constraint firstItem="vJd-AB-16B" firstAttribute="trailing" secondItem="HGP-rO-FpN" secondAttribute="trailing" id="QTq-vg-kXu"/>
+                            <constraint firstItem="vJd-AB-16B" firstAttribute="bottom" secondItem="HGP-rO-FpN" secondAttribute="bottom" id="Voq-g0-VY9"/>
+                            <constraint firstItem="vJd-AB-16B" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CFb-Vf-sPq" secondAttribute="bottom" constant="8" symbolic="YES" id="fba-Dm-tVN"/>
+                            <constraint firstItem="vJd-AB-16B" firstAttribute="leading" secondItem="HGP-rO-FpN" secondAttribute="leading" id="gv2-Xa-uPr"/>
+                            <constraint firstItem="vJd-AB-16B" firstAttribute="top" secondItem="HGP-rO-FpN" secondAttribute="top" id="mhv-AW-t1N"/>
                             <constraint firstItem="CFb-Vf-sPq" firstAttribute="top" secondItem="Yml-2p-t8Z" secondAttribute="bottom" constant="20" symbolic="YES" id="our-KB-ZfT"/>
+                            <constraint firstItem="G4l-yq-jvb" firstAttribute="top" secondItem="vJd-AB-16B" secondAttribute="bottom" constant="20" id="pdI-gv-M1o"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Love Lyndir" id="OZG-O6-xEE">
+                        <barButtonItem key="backBarButtonItem" title="Campaign" id="gcB-j9-XlV"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="H0C-uc-ftr">
                             <connections>
                                 <action selector="close:" destination="Wzd-TL-I1Y" id="2qN-K9-iAe"/>
@@ -223,9 +260,23 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="availableContainer" destination="vJd-AB-16B" id="5AN-xw-pXx"/>
+                        <outlet property="awesomePriceLabel" destination="ahc-vK-4H1" id="tdp-MT-wsc"/>
+                        <outlet property="freePriceLabel" destination="VaN-0q-Nxz" id="9o5-Kh-M0K"/>
+                        <outlet property="lovePriceLabel" destination="8T9-b0-uIb" id="GvY-5Q-qfN"/>
+                        <outlet property="toggleButton" destination="hXW-Gi-iZ0" id="Iec-5d-fEu"/>
+                        <outlet property="toggleGestureRecognizer" destination="B8g-0Z-plN" id="soS-0H-UHa"/>
+                        <outlet property="togglePositionConstraint" destination="jBd-Lm-2aE" id="4gT-YU-Eqt"/>
+                        <outlet property="unavailableLabel" destination="HGP-rO-FpN" id="cbF-rG-t5A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V6p-2t-STL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="B8g-0Z-plN"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="B8g-0Z-plN">
+                    <connections>
+                        <action selector="didPanToggle:" destination="Wzd-TL-I1Y" id="aOb-UH-eFi"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="642" y="142"/>
         </scene>
@@ -246,7 +297,7 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
         </scene>
     </scenes>
     <resources>
-        <image name="love-lyndir.button.grey.png" width="32" height="30"/>
+        <image name="love-lyndir.heart.grey.png" width="32" height="30"/>
         <image name="love-lyndir.picker.png" width="204" height="11"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

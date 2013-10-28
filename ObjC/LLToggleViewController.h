@@ -20,6 +20,16 @@
 
 @interface LLToggleViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *toggleGestureRecognizer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *togglePositionConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *toggleButton;
+@property (weak, nonatomic) IBOutlet UILabel *freePriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lovePriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *awesomePriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *unavailableLabel;
+@property (weak, nonatomic) IBOutlet UIView *availableContainer;
+
+- (IBAction)didPanToggle:(UIPanGestureRecognizer *)sender;
 - (IBAction)close:(id)sender;
 
 @end
