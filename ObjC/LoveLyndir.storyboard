@@ -221,8 +221,8 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
                                     <constraint firstItem="ahc-vK-4H1" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="ELv-5w-sa9"/>
                                     <constraint firstItem="hbj-yw-kOi" firstAttribute="centerX" secondItem="VaN-0q-Nxz" secondAttribute="centerX" constant="100" id="JJl-On-S3u"/>
                                     <constraint firstItem="hXW-Gi-iZ0" firstAttribute="top" secondItem="vJd-AB-16B" secondAttribute="top" id="Nmv-in-k7p"/>
+                                    <constraint firstItem="hXW-Gi-iZ0" firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" constant="-99" id="OGL-8C-n6a"/>
                                     <constraint firstItem="hbj-yw-kOi" firstAttribute="top" secondItem="hXW-Gi-iZ0" secondAttribute="bottom" constant="8" id="RGk-Wg-FAE"/>
-                                    <constraint firstItem="hbj-yw-kOi" firstAttribute="centerX" secondItem="hXW-Gi-iZ0" secondAttribute="centerX" constant="99" id="jBd-Lm-2aE"/>
                                     <constraint firstAttribute="height" constant="88" id="mtS-fh-jdr"/>
                                     <constraint firstItem="8T9-b0-uIb" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="o1m-5J-sFF"/>
                                     <constraint firstItem="ahc-vK-4H1" firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" constant="100" id="t6g-A2-7T4"/>
@@ -267,7 +267,7 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
                         <outlet property="lovePriceLabel" destination="8T9-b0-uIb" id="GvY-5Q-qfN"/>
                         <outlet property="toggleButton" destination="hXW-Gi-iZ0" id="Iec-5d-fEu"/>
                         <outlet property="toggleGestureRecognizer" destination="B8g-0Z-plN" id="soS-0H-UHa"/>
-                        <outlet property="togglePositionConstraint" destination="jBd-Lm-2aE" id="4gT-YU-Eqt"/>
+                        <outlet property="togglePositionConstraint" destination="OGL-8C-n6a" id="S5k-ek-fid"/>
                         <outlet property="unavailableLabel" destination="HGP-rO-FpN" id="cbF-rG-t5A"/>
                     </connections>
                 </viewController>

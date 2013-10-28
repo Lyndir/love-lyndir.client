@@ -67,7 +67,6 @@
 
     BOOL updateModel = NO;
     CGFloat target = _togglePositionPanFromConstant + [sender translationInView:self.view].x;
-    dbg(@"pan target: %f", target);
 
     switch (sender.state) {
         case UIGestureRecognizerStatePossible:
@@ -87,9 +86,7 @@
             break;
     }
 
-    dbg(@"pan target post state: %f", target);
     self.togglePositionConstraint.constant = MIN(99, MAX( -99, target ) );
-    dbg(@"pan target post bound: %f", self.togglePositionConstraint.constant);
     LLLoveLevel pannedLevel = [self updateToggleAppearanceAndModel];
     if (updateModel)
         [[LLModel sharedModel] purchaseLevel:pannedLevel];
@@ -130,7 +127,6 @@
         pannedLevel = LLLoveLevelLoved;
     else
         pannedLevel = LLLoveLevelFree;
-    dbg(@"Updating for level %d, since constant is: %f", pannedLevel, togglePositionTargetConstant);
 
     self.freePriceLabel.hidden = pannedLevel != LLLoveLevelFree;
     self.lovePriceLabel.hidden = pannedLevel != LLLoveLevelLoved;
