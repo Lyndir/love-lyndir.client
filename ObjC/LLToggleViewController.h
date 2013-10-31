@@ -28,7 +28,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *awesomePriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *unavailableLabel;
 @property (weak, nonatomic) IBOutlet UIView *availableContainer;
+@property (weak, nonatomic) IBOutlet UIButton *userNameButton;
 
+- (IBAction)onUserName:(id)sender;
+- (IBAction)longOnUserName:(id)sender;
 - (IBAction)didPanToggle:(UIPanGestureRecognizer *)sender;
 - (IBAction)close:(id)sender;
 

@@ -70,7 +70,7 @@ Sole Proprietor, Lyndir.</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="CFb-Vf-sPq">
-                                <rect key="frame" x="20" y="72" width="280" height="292"/>
+                                <rect key="frame" x="20" y="72" width="280" height="284"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="1" constant="280" id="GSD-sV-IPv"/>
@@ -144,15 +144,15 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for the iTunes store." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" enabled="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="HGP-rO-FpN">
-                                <rect key="frame" x="20" y="372" width="280" height="88"/>
+                                <rect key="frame" x="20" y="364" width="280" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJd-AB-16B">
-                                <rect key="frame" x="20" y="372" width="280" height="88"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJd-AB-16B">
+                                <rect key="frame" x="20" y="364" width="280" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXW-Gi-iZ0">
@@ -231,20 +231,38 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
                                     <constraint firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" id="xZz-vD-yvI"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOy-4a-4Zs">
+                                <rect key="frame" x="20" y="453" width="280" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                <state key="normal" title="Tap to set your email address.">
+                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
+                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onUserName:" destination="Wzd-TL-I1Y" eventType="touchUpInside" id="s3Z-Td-E5q"/>
+                                    <outletCollection property="gestureRecognizers" destination="5nL-wy-HUT" appends="YES" id="LjI-o8-r7l"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vJd-AB-16B" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="20" id="HgI-ur-fOk"/>
+                            <constraint firstItem="kOy-4a-4Zs" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="20" id="JEE-If-wx4"/>
                             <constraint firstItem="CFb-Vf-sPq" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="20" id="JPe-fT-vNw"/>
+                            <constraint firstItem="G4l-yq-jvb" firstAttribute="top" secondItem="kOy-4a-4Zs" secondAttribute="bottom" id="NnA-zt-kwN"/>
                             <constraint firstAttribute="trailing" secondItem="CFb-Vf-sPq" secondAttribute="trailing" constant="20" id="Nxl-ko-tCn"/>
                             <constraint firstAttribute="trailing" secondItem="vJd-AB-16B" secondAttribute="trailing" constant="20" id="PEb-B5-Gaq"/>
                             <constraint firstItem="vJd-AB-16B" firstAttribute="trailing" secondItem="HGP-rO-FpN" secondAttribute="trailing" id="QTq-vg-kXu"/>
                             <constraint firstItem="vJd-AB-16B" firstAttribute="bottom" secondItem="HGP-rO-FpN" secondAttribute="bottom" id="Voq-g0-VY9"/>
                             <constraint firstItem="vJd-AB-16B" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CFb-Vf-sPq" secondAttribute="bottom" constant="8" symbolic="YES" id="fba-Dm-tVN"/>
+                            <constraint firstAttribute="trailing" secondItem="kOy-4a-4Zs" secondAttribute="trailing" constant="20" id="gQI-Iq-3Gi"/>
                             <constraint firstItem="vJd-AB-16B" firstAttribute="leading" secondItem="HGP-rO-FpN" secondAttribute="leading" id="gv2-Xa-uPr"/>
                             <constraint firstItem="vJd-AB-16B" firstAttribute="top" secondItem="HGP-rO-FpN" secondAttribute="top" id="mhv-AW-t1N"/>
                             <constraint firstItem="CFb-Vf-sPq" firstAttribute="top" secondItem="Yml-2p-t8Z" secondAttribute="bottom" constant="20" symbolic="YES" id="our-KB-ZfT"/>
-                            <constraint firstItem="G4l-yq-jvb" firstAttribute="top" secondItem="vJd-AB-16B" secondAttribute="bottom" constant="20" id="pdI-gv-M1o"/>
+                            <constraint firstItem="G4l-yq-jvb" firstAttribute="top" secondItem="vJd-AB-16B" secondAttribute="bottom" constant="28" id="pdI-gv-M1o"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Love Lyndir" id="OZG-O6-xEE">
@@ -269,6 +287,7 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
                         <outlet property="toggleGestureRecognizer" destination="B8g-0Z-plN" id="soS-0H-UHa"/>
                         <outlet property="togglePositionConstraint" destination="OGL-8C-n6a" id="S5k-ek-fid"/>
                         <outlet property="unavailableLabel" destination="HGP-rO-FpN" id="cbF-rG-t5A"/>
+                        <outlet property="userNameButton" destination="kOy-4a-4Zs" id="j8S-QE-Re3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V6p-2t-STL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -277,6 +296,11 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
                         <action selector="didPanToggle:" destination="Wzd-TL-I1Y" id="aOb-UH-eFi"/>
                     </connections>
                 </panGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="5nL-wy-HUT">
+                    <connections>
+                        <action selector="longOnUserName:" destination="Wzd-TL-I1Y" id="1N0-Ig-qtE"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="642" y="142"/>
         </scene>

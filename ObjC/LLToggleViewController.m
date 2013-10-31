@@ -19,7 +19,8 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "LLToggleViewController.h"
 #import "LLModel.h"
-#import "PearlLogger.h"
+#import "PearlAlert.h"
+#import "PearlStrings.h"
 
 @implementation LLToggleViewController {
     CGFloat _togglePositionPanFromConstant;
@@ -27,7 +28,6 @@
 
 - (void)viewDidLoad {
 
-    [self updateTogglePosition];
     [[NSNotificationCenter defaultCenter]
             addObserverForName:LLLoveLevelUpdatedNotification object:nil queue:[NSOperationQueue mainQueue]
                     usingBlock:^(NSNotification *note) {
@@ -37,13 +37,20 @@
 
                         [self updateTogglePosition];
                     }];
-
-    [self updateAvailability];
+    [[NSNotificationCenter defaultCenter]
+            addObserverForName:LLEmailAddressUpdatedNotification object:nil queue:[NSOperationQueue mainQueue]
+                    usingBlock:^(NSNotification *note) {
+                        [self.userNameButton setTitle:[LLModel sharedModel].emailAddress forState:UIControlStateNormal];
+                    }];
     [[NSNotificationCenter defaultCenter]
             addObserverForName:LLPurchaseAvailabilityNotification object:nil queue:[NSOperationQueue mainQueue]
                     usingBlock:^(NSNotification *note) {
                         [self updateAvailability];
                     }];
+
+    [self updateTogglePosition];
+    [self.userNameButton setTitle:[LLModel sharedModel].emailAddress forState:UIControlStateNormal];
+    [self updateAvailability];
 
     [super viewDidLoad];
 }
@@ -61,6 +68,32 @@
     self.unavailableLabel.hidden = available;
     self.availableContainer.hidden = !available;
     self.unavailableLabel.text = [error localizedDescription];
+}
+
+- (IBAction)onUserName:(id)sender {
+
+    [PearlAlert showAlertWithTitle:@"Email Address"
+                           message:@"Your email address is necessary to make your purchase available across all Lyndir apps."
+                         viewStyle:UIAlertViewStylePlainTextInput
+                         initAlert:^(UIAlertView *alert, UITextField *firstField) {
+                             firstField.text = [LLModel sharedModel].emailAddress;
+                         }
+                 tappedButtonBlock:^(UIAlertView *alert, NSInteger buttonIndex) {
+                     if (buttonIndex == [alert cancelButtonIndex])
+                         return;
+
+                     [LLModel sharedModel].emailAddress = [alert textFieldAtIndex:0].text;
+                 }
+                       cancelTitle:[PearlStrings get].commonButtonCancel otherTitles:[PearlStrings get].commonButtonSave, nil];
+}
+
+- (IBAction)longOnUserName:(UILongPressGestureRecognizer *)sender {
+
+    if (sender.state != UIGestureRecognizerStateBegan)
+            // Only fire when the gesture was first detected.
+        return;
+
+    [[LLModel sharedModel] restorePurchases];
 }
 
 - (IBAction)didPanToggle:(UIPanGestureRecognizer *)sender {

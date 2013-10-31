@@ -23,14 +23,30 @@
 #import "PearlStringUtils.h"
 #import "PearlLogger.h"
 #import "PearlCodeUtils.h"
+#import "PearlStrings.h"
 
-//#define LL_HOST @"http://love.lyndir.com"
+#import "PearlOverlay.h"
+#import "PearlObjectUtils.h"
+#import "PearlUIUtils.h"
+#ifndef LL_HOST
 #define LL_HOST @"http://192.168.1.20:8080"
-#define LL_API_USER LL_HOST @"/app/rest/user"
+#endif
+#ifndef LL_OPAQUE_KEY
+#define LL_OPAQUE_KEY [@"DEVELOPMENT" dataUsingEncoding:NSUTF8StringEncoding]
+#endif
+#ifdef DEBUG
+#define LL_API_USER(email) PearlString(@"%@/app/rest/user/%@;mode=SANDBOX", LL_HOST, [email encodeURL])
+#define LL_APPLE_MANAGE [NSURL URLWithString:@"https://sandbox.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions"]
+#else
+#define LL_API_USER(email) PearlString(@"%@/app/rest/user/%@", LL_HOST, [email encodeURL])
+#define LL_APPLE_MANAGE [NSURL URLWithString:@"https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions"]
+#endif
 
 NSString *const LLCurrentLevelKey = @"LLCurrentLevelKey";
+NSString *const LLEmailAddressKey = @"LLEmailAddressKey";
 NSString *const LLReceiptHandledKey = @"LLReceiptHandledKey";
 NSString *const LLLoveLevelUpdatedNotification = @"LLLoveLevelUpdatedNotification";
+NSString *const LLEmailAddressUpdatedNotification = @"LLEmailAddressUpdatedNotification";
 NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNotification";
 
 @interface LLModel()<SKProductsRequestDelegate, SKPaymentTransactionObserver>
@@ -41,7 +57,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     NSUserDefaults *_local;
     NSNumberFormatter *_priceFormatter;
     NSDictionary *_products;
-    PearlAlert *_purchasingActivity;
+    PearlOverlay *_purchasingActivity;
     NSOperationQueue *_serverQueue;
     SKProductsRequest *_productsRequest;
     NSError *_error;
@@ -66,12 +82,23 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     [_priceFormatter = [NSNumberFormatter new] setNumberStyle:NSNumberFormatterCurrencyStyle];
     [_serverQueue = [NSOperationQueue new] setName:@"Love Lyndir Server Connector"];
 
-    // StoreKit setup.
+    if (_cloud)
+        [[NSNotificationCenter defaultCenter] addObserverForName:NSUbiquitousKeyValueStoreDidChangeExternallyNotification object:_cloud
+                                                           queue:nil usingBlock:^(NSNotification *note) {
+            NSArray *changedKeys = note.userInfo[NSUbiquitousKeyValueStoreChangedKeysKey];
+            if ([changedKeys containsObject:LLCurrentLevelKey])
+                [[NSNotificationCenter defaultCenter] postNotificationName:LLLoveLevelUpdatedNotification object:self];
+            if ([changedKeys containsObject:LLEmailAddressKey])
+                [[NSNotificationCenter defaultCenter] postNotificationName:LLEmailAddressUpdatedNotification object:self];
+        }];
+
+    // Make products available for purchase.
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     [self updateProducts];
 
-    self.receiptHandled = NO;
-    [self ensureReceiptHandled:NO];
+    // Make sure our receipt has been submitted and we have the latest server state.
+    if ([self ensureReceiptHandled:NO])
+        [self updateLevel];
 
     return self;
 }
@@ -97,8 +124,6 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
 
 - (void)setLevel:(LLLoveLevel)level {
 
-    NSAssert(!self.receiptHandled, @"Level shouldn't be set when the receipt is not being handled.");
-
     if (_cloud) {
         [_cloud setLongLong:level forKey:LLCurrentLevelKey];
         [_cloud synchronize];
@@ -109,6 +134,30 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     }
 
     [[NSNotificationCenter defaultCenter] postNotificationName:LLLoveLevelUpdatedNotification object:self];
+}
+
+- (NSString *)emailAddress {
+
+    if (_cloud)
+        return [_cloud stringForKey:LLEmailAddressKey];
+    if (_local)
+        return [_local stringForKey:LLEmailAddressKey];
+    return nil;
+}
+
+- (void)setEmailAddress:(NSString *)emailAddress {
+
+    if (_cloud) {
+        [_cloud setString:emailAddress forKey:LLEmailAddressKey];
+        [_cloud synchronize];
+    }
+    if (_local) {
+        [_local setObject:emailAddress forKey:LLEmailAddressKey];
+        [_local synchronize];
+    }
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLEmailAddressUpdatedNotification object:self];
+    [self sendReceipt:nil];
 }
 
 - (BOOL)receiptHandled {
@@ -140,14 +189,38 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
 
 - (void)purchaseLevel:(LLLoveLevel)level {
 
+    if (!self.emailAddress) {
+        // Missing email address.
+        [PearlAlert showAlertWithTitle:@"Missing Email Address" message:@"Begin by setting your email address at the bottom of the screen."
+                             viewStyle:UIAlertViewStyleDefault initAlert:nil tappedButtonBlock:nil
+                           cancelTitle:[PearlStrings get].commonButtonBack otherTitles:nil];
+        return;
+    }
+
     if (level == self.level) {
         // Already at this level, don't need to purchase.
         return;
     }
 
     SKProduct *product = [self productForLevel:level];
-    if (product)
-        [[SKPaymentQueue defaultQueue] addPayment:[SKPayment paymentWithProduct:product]];
+    if (!product) {
+        // This product cannot be purchased.
+        return;
+    }
+
+    SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];
+    if ([payment respondsToSelector:@selector(setApplicationUsername:)])
+        payment.applicationUsername =
+                [[[self.emailAddress dataUsingEncoding:NSUTF8StringEncoding]
+                        hmacWith:PearlHashSHA1 key:LL_OPAQUE_KEY] encodeBase64];
+    [[SKPaymentQueue defaultQueue] addPayment:payment];
+}
+
+- (void)restorePurchases {
+
+    [_purchasingActivity cancelOverlayAnimated:YES];
+    _purchasingActivity = [PearlOverlay showOverlayWithTitle:@"Restoring Purchases"];
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
 - (UIImage *)buttonImage {
@@ -237,22 +310,14 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     return [_priceFormatter stringFromNumber:product.price];
 }
 
-- (void)sendAppReceipt {
-
-    if ([self sendReceipt:nil]) {
-        // We were able to find the receipt in the application bundle.
-        return;
-    }
-
-    // We weren't able to find the receipt to handle.  Try restoring purchases instead.
-    // If this fails to get us the receipt, we'll need the user to explicitly try the purchase again.
-    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
-}
-
 /**
  * @return YES if the receipt was successfully parsed and sent off to the server.
  */
 - (BOOL)sendReceipt:(SKPaymentTransaction *)transaction {
+
+    if (!self.emailAddress)
+            // Missing email address, cannot identify user.
+        return NO;
 
     NSData *receipt = nil;
     if (floor( NSFoundationVersionNumber ) > NSFoundationVersionNumber_iOS_6_1)
@@ -272,14 +337,16 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     self.receiptHandled = NO;
 
     NSError *error = nil;
-    NSData *requestContent = [NSJSONSerialization dataWithJSONObject:@{ @"receiptB64" : [receipt encodeBase64] }
-                                                             options:NSJSONWritingPrettyPrinted error:&error];
+    NSData *requestContent = [NSJSONSerialization dataWithJSONObject:@{
+            @"receiptB64"  : [receipt encodeBase64],
+            @"application" : [NSBundle mainBundle].bundleIdentifier
+    }                                                        options:NSJSONWritingPrettyPrinted error:&error];
     if (!requestContent) {
         wrn(@"Error serializing request: %@", _error = error);
         return NO;
     }
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:LL_API_USER @"/lhunath@lyndir.com"]]; // TODO
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:LL_API_USER(self.emailAddress)]];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"utf-8" forHTTPHeaderField:@"Accept-Charset"];
@@ -288,50 +355,114 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
 
     [NSURLConnection sendAsynchronousRequest:request queue:_serverQueue completionHandler:
             ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                @try {
-                    if (connectionError) {
-                        err(@"Error sending receipt: %@", _error = connectionError);
-                        if (!response)
-                            return;
-                    }
+                [self handleJSONResponse:response data:data error:connectionError successHandler:
+                        ^(NSHTTPURLResponse *httpResponse, NSDictionary *responseObject) {
+                            dbg(@"Successfully submitted receipt, updated user:\n%@", responseObject);
+                            self.level = [responseObject[@"loveLevel"] unsignedIntegerValue];
+                            self.receiptHandled = YES;
 
-                    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-                    if (httpResponse.statusCode >= 300) {
-                        err(@"Unsuccessful response code %@(%d): %@", [NSHTTPURLResponse localizedStringForStatusCode:httpResponse.statusCode],
-                        httpResponse.statusCode, data);
-                        return;
-                    }
-
-                    if (![data length]) {
-                        err(@"Missing response.");
-                        return;
-                    }
-
-                    NSError *error_ = nil;
-                    NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error_];
-                    if (!responseObject) {
-                        err(@"Error parsing response: %@", _error = error_);
-                        return;
-                    }
-
-                    // Success.
-                    dbg(@"Successfully submitted receipt, updated user:\n%@", responseObject);
-                    self.level = [[responseObject objectForKey:@"loveLevel"] unsignedIntegerValue];
-                    self.receiptHandled = YES;
-                }
-                @finally {
-                    [_purchasingActivity cancelAlertAnimated:YES];
-                    [self ensureReceiptHandled:YES];
-                }
+                            NSInteger activeSubscriptions = [NSNullToNil(responseObject[@"activeSubscriptions"]) integerValue];
+                            if (activeSubscriptions > 1)
+                                [PearlAlert showAlertWithTitle:@"Multiple Subscriptions" message:
+                                        PearlString( @"It looks like you have %d active subscriptions.\n"
+                                                @"Only you can cancel subscriptions.  "
+                                                @"You do this from the App Store's “Manage Subscriptions” page.",
+                                                activeSubscriptions )
+                                                     viewStyle:UIAlertViewStyleDefault initAlert:nil
+                                             tappedButtonBlock:^(UIAlertView *alert, NSInteger buttonIndex) {
+                                                 if (buttonIndex == [alert cancelButtonIndex])
+                                                     return;
+                                                 if (buttonIndex == [alert firstOtherButtonIndex])
+                                                     [UIApp openURL:LL_APPLE_MANAGE];
+                                             } cancelTitle:[PearlStrings get].commonButtonDone otherTitles:@"Manage", nil];
+                        } failureHandler:
+                        ^(NSHTTPURLResponse *httpResponse, NSString *entity) {
+                            if (httpResponse.statusCode == 404) {
+                                wrn(@"User disappeared: %@", self.emailAddress);
+                                self.level = LLLoveLevelFree;
+                            }
+                        }];
             }];
 
     return YES;
 }
 
-- (void)ensureReceiptHandled:(BOOL)delayedRetry {
+- (void)updateLevel {
+
+    if (!self.emailAddress)
+            // Missing email address, cannot identify user.
+        return;
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:LL_API_USER(self.emailAddress)]];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"utf-8" forHTTPHeaderField:@"Accept-Charset"];
+    [request setHTTPMethod:@"GET"];
+
+    [NSURLConnection sendAsynchronousRequest:request queue:_serverQueue completionHandler:
+            ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                [self handleJSONResponse:response data:data error:connectionError successHandler:
+                        ^(NSHTTPURLResponse *httpResponse, NSDictionary *responseObject) {
+                            dbg(@"Successfully updated user:\n%@", responseObject);
+                            self.level = [responseObject[@"loveLevel"] unsignedIntegerValue];
+                        } failureHandler:
+                        ^(NSHTTPURLResponse *httpResponse, NSString *entity) {
+                            if (httpResponse.statusCode == 404) {
+                                wrn(@"User disappeared: %@", self.emailAddress);
+                                self.level = LLLoveLevelFree;
+                            }
+                        }];
+            }];
+}
+
+- (void)handleJSONResponse:(NSURLResponse *)response data:(NSData *)data error:(NSError *)connectionError
+            successHandler:(void (^)(NSHTTPURLResponse *httpResponse, NSDictionary *responseObject))successHandler
+            failureHandler:(void (^)(NSHTTPURLResponse *httpResponse, NSString *entity))failureHandler {
+
+    @try {
+        if (connectionError) {
+            err(@"Error sending receipt: %@", _error = connectionError);
+            if (!response) {
+                failureHandler( nil, nil );
+                return;
+            }
+        }
+
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        NSString *entity = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        if (httpResponse.statusCode >= 300) {
+            err(@"Unsuccessful response code %@(%d): %@", //
+            [NSHTTPURLResponse localizedStringForStatusCode:httpResponse.statusCode], httpResponse.statusCode, entity);
+            failureHandler( httpResponse, entity );
+            return;
+        }
+
+        if (![data length]) {
+            err(@"Missing response.");
+            failureHandler( httpResponse, entity );
+            return;
+        }
+
+        NSError *error_ = nil;
+        NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error_];
+        if (!responseObject) {
+            err(@"Error parsing response: %@", _error = error_);
+            failureHandler( httpResponse, entity );
+            return;
+        }
+
+        // Success.
+        successHandler( httpResponse, responseObject );
+    }
+    @finally {
+        [_purchasingActivity cancelOverlayAnimated:YES];
+        [self ensureReceiptHandled:YES];
+    }
+}
+
+- (BOOL)ensureReceiptHandled:(BOOL)delayedRetry {
 
     if (self.receiptHandled)
-        return;
+        return YES;
 
     if (delayedRetry) {
         dbg(@"Receipt not handled, queuing to submit in 10s");
@@ -339,10 +470,11 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
                 dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 ), ^{
                     [self ensureReceiptHandled:NO];
                 } );
-        return;
+        return NO;
     }
 
-    [self sendAppReceipt];
+    [self sendReceipt:nil];
+    return NO;
 }
 
 #pragma mark - SKProductsRequestDelegate
@@ -386,14 +518,28 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     for (SKPaymentTransaction *transaction in transactions)
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchasing:
-                _purchasingActivity = [PearlAlert showActivityWithTitle:PearlString( @"Purchasing %@",
+                _purchasingActivity = [PearlOverlay showOverlayWithTitle:PearlString( @"Purchasing %@",
                         ((SKProduct *)(_products)[transaction.payment.productIdentifier]).localizedTitle )];
                 break;
             case SKPaymentTransactionStateFailed:
                 err( @"In-App Purchase failed: %@", transaction.error );
                 [[NSNotificationCenter defaultCenter] postNotificationName:LLLoveLevelUpdatedNotification object:self];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                [_purchasingActivity cancelAlertAnimated:YES];
+                [_purchasingActivity cancelOverlayAnimated:YES];
+                [PearlAlert showAlertWithTitle:@"Purchase Failed" message:[transaction.error localizedDescription]
+                                     viewStyle:UIAlertViewStyleDefault initAlert:nil
+                             tappedButtonBlock:^(UIAlertView *alert, NSInteger buttonIndex) {
+                                 if (buttonIndex == [alert cancelButtonIndex])
+                                     return;
+
+                                 [PearlAlert showAlertWithTitle:@"Purchase Problems" message:
+                                         @"If you're having trouble making a purchase, make sure you're connected to a stable Internet connection, "
+                                                 @"such as Wi-Fi.  Make sure Safari works.  Try going into Settings -> iTunes & App Store and logging out. "
+                                                 @"If problems persist, Apple may have temporary server issues."
+                                                      viewStyle:UIAlertViewStyleDefault initAlert:nil tappedButtonBlock:nil
+                                                    cancelTitle:[PearlStrings get].commonButtonThanks otherTitles:nil];
+                             }
+                                   cancelTitle:@"Retry Later" otherTitles:@"Help", nil];
                 break;
             case SKPaymentTransactionStatePurchased:
                 [self sendReceipt:transaction];

@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, LLLoveLevel) {
 
 extern NSString *const LLCurrentLevelKey;
 extern NSString *const LLLoveLevelUpdatedNotification;
+extern NSString *const LLEmailAddressUpdatedNotification;
 extern NSString *const LLPurchaseAvailabilityNotification;
 
 @interface LLModel : NSObject
@@ -35,6 +36,8 @@ extern NSString *const LLPurchaseAvailabilityNotification;
 + (instancetype)sharedModel;
 
 - (LLLoveLevel)level;
+- (NSString *)emailAddress;
+- (void)setEmailAddress:(NSString *)emailAddress;
 
 - (UIImage *)buttonImage;
 - (UIImage *)buttonImageForLevel:(LLLoveLevel)level;
@@ -47,5 +50,6 @@ extern NSString *const LLPurchaseAvailabilityNotification;
 
 - (BOOL)isPurchaseAvailableOrError:(NSError **)error;
 - (void)purchaseLevel:(LLLoveLevel)level;
+- (void)restorePurchases;
 
 @end
