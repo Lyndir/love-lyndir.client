@@ -21,9 +21,9 @@
 typedef NS_ENUM(NSUInteger, LLLoveLevel) {
     LLLoveLevelMIN,
     LLLoveLevelFree = LLLoveLevelMIN,
+    LLLoveLevelLiked,
     LLLoveLevelLoved,
-    LLLoveLevelAwesome,
-    LLLoveLevelMAX = LLLoveLevelAwesome,
+    LLLoveLevelMAX = LLLoveLevelLoved,
 };
 
 extern NSString *const LLCurrentLevelKey;
@@ -48,8 +48,10 @@ extern NSString *const LLPurchaseAvailabilityNotification;
 - (NSString *)levelTitle;
 - (NSString *)levelTitleForLevel:(LLLoveLevel)level;
 
+- (NSString *)priceStringForLevel:(LLLoveLevel)level;
+
 - (BOOL)isPurchaseAvailableOrError:(NSError **)error;
-- (void)purchaseLevel:(LLLoveLevel)level;
+- (void)purchaseLevel:(LLLoveLevel)level fromVC:(UIViewController *)initiatorVC;
 - (void)restorePurchases;
 
 @end

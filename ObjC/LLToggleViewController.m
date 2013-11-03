@@ -21,6 +21,7 @@
 #import "LLModel.h"
 #import "PearlAlert.h"
 #import "PearlStrings.h"
+#import "PearlStringUtils.h"
 
 @implementation LLToggleViewController {
     CGFloat _togglePositionPanFromConstant;
@@ -122,7 +123,7 @@
     self.togglePositionConstraint.constant = MIN(99, MAX( -99, target ) );
     LLLoveLevel pannedLevel = [self updateToggleAppearanceAndModel];
     if (updateModel)
-        [[LLModel sharedModel] purchaseLevel:pannedLevel];
+        [[LLModel sharedModel] purchaseLevel:pannedLevel fromVC:self];
 }
 
 - (CGFloat)togglePositionConstantEndForIntermediary:(CGFloat)target {
@@ -141,9 +142,9 @@
     switch (level) {
         case LLLoveLevelFree:
             return -99;
-        case LLLoveLevelLoved:
+        case LLLoveLevelLiked:
             return 0;
-        case LLLoveLevelAwesome:
+        case LLLoveLevelLoved:
             return 99;
     }
 
@@ -155,16 +156,30 @@
     LLLoveLevel pannedLevel;
     CGFloat togglePositionTargetConstant = [self togglePositionConstantEndForIntermediary:self.togglePositionConstraint.constant];
     if (togglePositionTargetConstant > 0)
-        pannedLevel = LLLoveLevelAwesome;
-    else if (togglePositionTargetConstant == 0)
         pannedLevel = LLLoveLevelLoved;
+    else if (togglePositionTargetConstant == 0)
+        pannedLevel = LLLoveLevelLiked;
     else
         pannedLevel = LLLoveLevelFree;
-
-    self.freePriceLabel.hidden = pannedLevel != LLLoveLevelFree;
-    self.lovePriceLabel.hidden = pannedLevel != LLLoveLevelLoved;
-    self.awesomePriceLabel.hidden = pannedLevel != LLLoveLevelAwesome;
     [self.toggleButton setImage:[[LLModel sharedModel] heartImageForLevel:pannedLevel] forState:UIControlStateNormal];
+
+    for (LLLoveLevel level = LLLoveLevelMIN; level <= LLLoveLevelMAX; ++level) {
+        UILabel *label;
+        switch (level) {
+            case LLLoveLevelFree:
+                label = self.freePriceLabel;
+                break;
+            case LLLoveLevelLiked:
+                label = self.likePriceLabel;
+                break;
+            case LLLoveLevelLoved:
+                label = self.lovePriceLabel;
+                break;
+        }
+        label.hidden = pannedLevel != level;
+        label.text = PearlString( @"%@\n%@",
+                [[LLModel sharedModel] levelTitleForLevel:level], [[LLModel sharedModel] priceStringForLevel:level] );
+    }
 
     return pannedLevel;
 }

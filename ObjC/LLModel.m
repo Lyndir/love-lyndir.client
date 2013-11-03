@@ -28,6 +28,8 @@
 #import "PearlOverlay.h"
 #import "PearlObjectUtils.h"
 #import "PearlUIUtils.h"
+
+#import "LLConfig.h"
 #ifndef LL_HOST
 #define LL_HOST @"http://192.168.1.20:8080"
 #endif
@@ -61,6 +63,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     NSOperationQueue *_serverQueue;
     SKProductsRequest *_productsRequest;
     NSError *_error;
+    __weak UIViewController *_purchaseInitiatorVC;
 }
 
 + (instancetype)sharedModel {
@@ -81,6 +84,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     [_local = [NSUserDefaults standardUserDefaults] synchronize];
     [_priceFormatter = [NSNumberFormatter new] setNumberStyle:NSNumberFormatterCurrencyStyle];
     [_serverQueue = [NSOperationQueue new] setName:@"Love Lyndir Server Connector"];
+    [_serverQueue setMaxConcurrentOperationCount:1];
 
     if (_cloud)
         [[NSNotificationCenter defaultCenter] addObserverForName:NSUbiquitousKeyValueStoreDidChangeExternallyNotification object:_cloud
@@ -106,8 +110,8 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
 - (void)updateProducts {
 
     _productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:
-            [NSSet setWithObjects:[self productIdentifierForLevel:LLLoveLevelLoved],
-                                  [self productIdentifierForLevel:LLLoveLevelAwesome],
+            [NSSet setWithObjects:[self productIdentifierForLevel:LLLoveLevelLiked],
+                                  [self productIdentifierForLevel:LLLoveLevelLoved],
                                   nil]];
     _productsRequest.delegate = self;
     [_productsRequest start];
@@ -116,9 +120,9 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
 - (LLLoveLevel)level {
 
     if (_cloud)
-        return (LLLoveLevel)MAX(LLLoveLevelFree, MIN( LLLoveLevelAwesome, (LLLoveLevel)[_cloud longLongForKey:LLCurrentLevelKey] ));
+        return (LLLoveLevel)MAX(LLLoveLevelFree, MIN( LLLoveLevelLoved, (LLLoveLevel)[_cloud longLongForKey:LLCurrentLevelKey] ));
     if (_local)
-        return (LLLoveLevel)MAX(LLLoveLevelFree, MIN( LLLoveLevelAwesome, (LLLoveLevel)[_local integerForKey:LLCurrentLevelKey] ));
+        return (LLLoveLevel)MAX(LLLoveLevelFree, MIN( LLLoveLevelLoved, (LLLoveLevel)[_local integerForKey:LLCurrentLevelKey] ));
     return LLLoveLevelFree;
 }
 
@@ -184,10 +188,13 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
 - (BOOL)isPurchaseAvailableOrError:(NSError **)error {
 
     *error = _error;
+    if (![_products count] && !*error)
+        *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:@{ NSLocalizedDescriptionKey : @"Products unavailable" }];
+
     return [_products count] > 0;
 }
 
-- (void)purchaseLevel:(LLLoveLevel)level {
+- (void)purchaseLevel:(LLLoveLevel)level fromVC:(UIViewController *)initiatorVC {
 
     if (!self.emailAddress) {
         // Missing email address.
@@ -208,6 +215,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
         return;
     }
 
+    _purchaseInitiatorVC = initiatorVC;
     SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];
     if ([payment respondsToSelector:@selector(setApplicationUsername:)])
         payment.applicationUsername =
@@ -233,9 +241,9 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     switch (level) {
         case LLLoveLevelFree:
             return [UIImage imageNamed:@"love-lyndir.button.grey.png"];
-        case LLLoveLevelLoved:
+        case LLLoveLevelLiked:
             return [UIImage imageNamed:@"love-lyndir.button.green.png"];
-        case LLLoveLevelAwesome:
+        case LLLoveLevelLoved:
             return [UIImage imageNamed:@"love-lyndir.button.red.png"];
     }
 
@@ -252,9 +260,9 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     switch (level) {
         case LLLoveLevelFree:
             return [UIImage imageNamed:@"love-lyndir.heart.grey.png"];
-        case LLLoveLevelLoved:
+        case LLLoveLevelLiked:
             return [UIImage imageNamed:@"love-lyndir.heart.green.png"];
-        case LLLoveLevelAwesome:
+        case LLLoveLevelLoved:
             return [UIImage imageNamed:@"love-lyndir.heart.red.png"];
     }
 
@@ -271,10 +279,10 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     switch (level) {
         case LLLoveLevelFree:
             return @"Free";
+        case LLLoveLevelLiked:
+            return @"Like";
         case LLLoveLevelLoved:
-            return @"Loved";
-        case LLLoveLevelAwesome:
-            return @"Awesome";
+            return @"Love";
     }
 
     return nil;
@@ -285,10 +293,10 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     switch (level) {
         case LLLoveLevelFree:
             return nil;
+        case LLLoveLevelLiked:
+            return PearlString( @"%@.love.liked", [[NSBundle mainBundle] bundleIdentifier] );
         case LLLoveLevelLoved:
             return PearlString( @"%@.love.loved", [[NSBundle mainBundle] bundleIdentifier] );
-        case LLLoveLevelAwesome:
-            return PearlString( @"%@.love.awesome", [[NSBundle mainBundle] bundleIdentifier] );
     }
 
     return nil;
@@ -307,7 +315,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
 
     SKProduct *product = [self productForLevel:level];
     [_priceFormatter setLocale:product.priceLocale];
-    return [_priceFormatter stringFromNumber:product.price];
+    return IfNotNilElse([_priceFormatter stringFromNumber:product.price], @"");
 }
 
 /**
@@ -329,7 +337,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
             receipt = transaction.originalTransaction.transactionReceipt;
     }
     if (![receipt length]) {
-        wrn(@"Empty receipt for: %@", transaction);
+        wrn(@"No receipt for: %@, %@", self.emailAddress, transaction);
         return NO;
     }
 
@@ -361,6 +369,17 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
                             self.level = [responseObject[@"loveLevel"] unsignedIntegerValue];
                             self.receiptHandled = YES;
 
+                            if (_purchaseInitiatorVC)
+                                [PearlAlert showAlertWithTitle:@"Thanks!" message:PearlString( @"Thanks for %@ Lyndir's products.",
+                                        self.level == LLLoveLevelLiked? @"liking": @"loving" )
+                                                     viewStyle:UIAlertViewStyleDefault initAlert:nil
+                                             tappedButtonBlock:^(UIAlertView *alert, NSInteger buttonIndex) {
+                                                 if (buttonIndex == [alert firstOtherButtonIndex])
+                                                     [self sharePurchase];
+
+                                                 _purchaseInitiatorVC = nil;
+                                             } cancelTitle:[PearlStrings get].commonButtonDone otherTitles:@"Share", nil];
+
                             NSInteger activeSubscriptions = [NSNullToNil(responseObject[@"activeSubscriptions"]) integerValue];
                             if (activeSubscriptions > 1)
                                 [PearlAlert showAlertWithTitle:@"Multiple Subscriptions" message:
@@ -380,11 +399,21 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
                             if (httpResponse.statusCode == 404) {
                                 wrn(@"User disappeared: %@", self.emailAddress);
                                 self.level = LLLoveLevelFree;
+                                _purchaseInitiatorVC = nil;
                             }
                         }];
             }];
 
     return YES;
+}
+
+- (void)sharePurchase {
+
+    [_purchaseInitiatorVC presentViewController:[[UIActivityViewController alloc] initWithActivityItems:@[
+            @"I just signed up for donation to Lyndir's awesome free apps campaign. Pay what you want or nothing at all.",
+            [NSURL URLWithString:@"https://itunes.apple.com/artist/id302275462"]
+    ]                                                                             applicationActivities:nil]
+                                       animated:YES completion:nil];
 }
 
 - (void)updateLevel {
@@ -407,8 +436,8 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
                         } failureHandler:
                         ^(NSHTTPURLResponse *httpResponse, NSString *entity) {
                             if (httpResponse.statusCode == 404) {
-                                wrn(@"User disappeared: %@", self.emailAddress);
-                                self.level = LLLoveLevelFree;
+                                wrn(@"User disappeared: %@, will try to recreate by submitting receipt.", self.emailAddress);
+                                [self sendReceipt:nil];
                             }
                         }];
             }];
@@ -451,6 +480,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
         }
 
         // Success.
+        _error = nil;
         successHandler( httpResponse, responseObject );
     }
     @finally {
@@ -481,7 +511,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
 
-    dbg(@"Response: %@", response);
+    dbg(@"Response: products=%@, invalidProductIdentifiers=%@", response.products, response.invalidProductIdentifiers);
     NSMutableDictionary *products = [NSMutableDictionary dictionaryWithCapacity:[response.products count]];
     for (SKProduct *product in response.products)
         products[product.productIdentifier] = product;

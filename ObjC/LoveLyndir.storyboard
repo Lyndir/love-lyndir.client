@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
-        <!--View Controller - About-->
+        <!--About View Controller - About-->
         <scene sceneID="HrL-JD-r7M">
             <objects>
-                <viewController id="7UK-33-K8I" sceneMemberID="viewController">
+                <viewController id="7UK-33-K8I" customClass="LLAboutViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZnH-qz-3As"/>
                         <viewControllerLayoutGuide type="bottom" id="IMq-Zg-OKw"/>
@@ -17,10 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1H-N1-IRX">
-                                <rect key="frame" x="20" y="0.0" width="280" height="480"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k1H-N1-IRX">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <string key="text">Love Lyndir is an initiative by Maarten Billemont to make all apps available free of charge to everyone, as well as to make their source code available publicly under open source licenses.
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Love Lyndir is an initiative by Maarten Billemont to make all apps available free of charge to everyone, as well as to make their source code available publicly under open source licenses.
 
 The result is high-quality applications that are available for everyone's benefit.  Additionally, they can be freely modified and improved on by amateur and professional developers worldwide, rather than being trapped in a proprietary maintenance deadlock.
 
@@ -36,21 +38,30 @@ Thank you for enjoying this app,
 
 Maarten Billemont,
 Sole Proprietor, Lyndir.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="k1H-N1-IRX" firstAttribute="leading" secondItem="e6A-Xe-Bio" secondAttribute="leading" constant="20" symbolic="YES" id="PI2-I0-9vV"/>
+                            <constraint firstItem="k1H-N1-IRX" firstAttribute="leading" secondItem="e6A-Xe-Bio" secondAttribute="leading" id="PI2-I0-9vV"/>
                             <constraint firstItem="IMq-Zg-OKw" firstAttribute="top" secondItem="k1H-N1-IRX" secondAttribute="bottom" id="Wm5-5T-FpT"/>
-                            <constraint firstAttribute="trailing" secondItem="k1H-N1-IRX" secondAttribute="trailing" constant="20" symbolic="YES" id="e0V-Id-52p"/>
+                            <constraint firstAttribute="trailing" secondItem="k1H-N1-IRX" secondAttribute="trailing" id="e0V-Id-52p"/>
                             <constraint firstItem="k1H-N1-IRX" firstAttribute="top" secondItem="e6A-Xe-Bio" secondAttribute="top" id="ywW-yT-fws"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="Y2B-pw-1LV">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="lo2-0B-QHk"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="lo2-0B-QHk">
+                            <connections>
+                                <action selector="action:" destination="7UK-33-K8I" id="iPI-EF-Ei9"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1R2-Uw-eno" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -185,7 +196,7 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
                                             <constraint firstAttribute="width" constant="80" id="M6e-R5-Slv"/>
                                             <constraint firstAttribute="height" constant="31" id="auU-xt-NoH"/>
                                         </constraints>
-                                        <string key="text">Loved
+                                        <string key="text">Like
 0.99$</string>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <color key="textColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -210,7 +221,7 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
                                             <constraint firstAttribute="height" constant="31" id="jOx-HA-Cv2"/>
                                             <constraint firstAttribute="width" constant="80" id="w8l-se-f5y"/>
                                         </constraints>
-                                        <string key="text">Awesome
+                                        <string key="text">Love
 4.99$</string>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -280,9 +291,9 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
                     </navigationItem>
                     <connections>
                         <outlet property="availableContainer" destination="vJd-AB-16B" id="5AN-xw-pXx"/>
-                        <outlet property="awesomePriceLabel" destination="ahc-vK-4H1" id="tdp-MT-wsc"/>
                         <outlet property="freePriceLabel" destination="VaN-0q-Nxz" id="9o5-Kh-M0K"/>
-                        <outlet property="lovePriceLabel" destination="8T9-b0-uIb" id="GvY-5Q-qfN"/>
+                        <outlet property="likePriceLabel" destination="8T9-b0-uIb" id="GvY-5Q-qfN"/>
+                        <outlet property="lovePriceLabel" destination="ahc-vK-4H1" id="tdp-MT-wsc"/>
                         <outlet property="toggleButton" destination="hXW-Gi-iZ0" id="Iec-5d-fEu"/>
                         <outlet property="toggleGestureRecognizer" destination="B8g-0Z-plN" id="soS-0H-UHa"/>
                         <outlet property="togglePositionConstraint" destination="OGL-8C-n6a" id="S5k-ek-fid"/>

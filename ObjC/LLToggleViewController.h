@@ -24,8 +24,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *togglePositionConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *toggleButton;
 @property (weak, nonatomic) IBOutlet UILabel *freePriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *likePriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lovePriceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *awesomePriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *unavailableLabel;
 @property (weak, nonatomic) IBOutlet UIView *availableContainer;
 @property (weak, nonatomic) IBOutlet UIButton *userNameButton;
