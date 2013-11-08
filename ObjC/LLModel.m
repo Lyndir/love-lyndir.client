@@ -187,8 +187,9 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
 
 - (BOOL)isPurchaseAvailableOrError:(NSError **)error {
 
-    *error = _error;
-    if (![_products count] && !*error)
+    if (error)
+        *error = _error;
+    if (![_products count] && error && !*error)
         *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:@{ NSLocalizedDescriptionKey : @"Products unavailable" }];
 
     return [_products count] > 0;
