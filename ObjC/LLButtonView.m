@@ -21,6 +21,11 @@
 
 @implementation LLButtonView
 
+- (id)init {
+
+    return [self initWithFrame:CGRectMake( 0, 0, 32, 32 )];
+}
+
 - (id)initWithFrame:(CGRect)frame {
 
     if (!(self = [super initWithFrame:frame]))
