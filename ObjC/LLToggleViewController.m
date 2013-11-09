@@ -17,11 +17,17 @@
 //
 
 #import <CoreGraphics/CoreGraphics.h>
+#import <StoreKit/StoreKit.h>
 #import "LLToggleViewController.h"
 #import "LLModel.h"
 #import "PearlAlert.h"
 #import "PearlStrings.h"
 #import "PearlStringUtils.h"
+#import "PearlLogger.h"
+#import "PearlUIUtils.h"
+
+@interface LLToggleViewController()<SKStoreProductViewControllerDelegate>
+@end
 
 @implementation LLToggleViewController {
     CGFloat _togglePositionPanFromConstant;
@@ -197,6 +203,55 @@
 - (IBAction)close:(id)sender {
 
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)apps:(id)sender {
+
+    [self showApps:YES];
+}
+
+- (void)showApps:(BOOL)inApp {
+
+    if (!inApp) {
+        [UIApp openURL:[NSURL URLWithString:@"itms://itunes.com/artist/id302275462"]];
+        return;
+    }
+
+    @try {
+        SKStoreProductViewController *storeViewController = [SKStoreProductViewController new];
+        storeViewController.delegate = self;
+        [storeViewController loadProductWithParameters:@{
+                SKStoreProductParameterITunesItemIdentifier : @"302275462"
+        }                              completionBlock:^(BOOL result, NSError *error) {
+            if (!result) {
+                err( @"Failed to load in-app details: %@", error );
+                [self showApps:NO];
+                return;
+            }
+        }];
+        [self presentViewController:storeViewController animated:YES completion:nil];
+    }
+    @catch (NSException *exception) {
+        err(@"Exception while loading in-app details: %@", exception);
+        [self showApps:NO];
+    }
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+
+    return UIInterfaceOrientationPortrait;
+}
+
+- (BOOL)prefersStatusBarHidden {
+
+    return NO;
+}
+
+#pragma mark - SKStoreProductViewControllerDelegate
+
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
+
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

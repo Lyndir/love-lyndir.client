@@ -34,5 +34,6 @@
 - (IBAction)longOnUserName:(id)sender;
 - (IBAction)didPanToggle:(UIPanGestureRecognizer *)sender;
 - (IBAction)close:(id)sender;
+- (IBAction)apps:(id)sender;
 
 @end

@@ -5,69 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
-        <!--About View Controller - About-->
-        <scene sceneID="HrL-JD-r7M">
-            <objects>
-                <viewController id="7UK-33-K8I" customClass="LLAboutViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZnH-qz-3As"/>
-                        <viewControllerLayoutGuide type="bottom" id="IMq-Zg-OKw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="e6A-Xe-Bio">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k1H-N1-IRX">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">Love Lyndir is an initiative by Maarten Billemont to make all apps available free of charge to everyone, as well as to make their source code available publicly under open source licenses.
-
-The result is high-quality applications that are available for everyone's benefit.  Additionally, they can be freely modified and improved on by amateur and professional developers worldwide, rather than being trapped in a proprietary maintenance deadlock.
-
-It also means everybody ranging from children to students, people with modest incomes to those just interested in evaluating a new app, can enjoy the full scope of Lyndir's apps without restrictions and without intrusive ads.
-
-All Lyndir's development is funded by the Love Lyndir campaign, which involves giving all users the freedom of choice for making contributions.  If you feel Lyndir's apps are worth something, please consider making a small or larger monthly contribution.  Without your contributions, this campaign cannot survive.
-
-Finally, note that Love Lyndir is a global campaign: Signing up from within this app will enable Love Lyndir for you within all of Lyndir's apps.  You do not pay per app.  You pay to support the development and maintenance of all Lyndir's apps.
-
-If you have any questions, comments or insights, I welcome an open dialog at info@lyndir.com
-
-Thank you for enjoying this app,
-
-Maarten Billemont,
-Sole Proprietor, Lyndir.</string>
-                                        <attributes>
-                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="k1H-N1-IRX" firstAttribute="leading" secondItem="e6A-Xe-Bio" secondAttribute="leading" id="PI2-I0-9vV"/>
-                            <constraint firstItem="IMq-Zg-OKw" firstAttribute="top" secondItem="k1H-N1-IRX" secondAttribute="bottom" id="Wm5-5T-FpT"/>
-                            <constraint firstAttribute="trailing" secondItem="k1H-N1-IRX" secondAttribute="trailing" id="e0V-Id-52p"/>
-                            <constraint firstItem="k1H-N1-IRX" firstAttribute="top" secondItem="e6A-Xe-Bio" secondAttribute="top" id="ywW-yT-fws"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="About" id="Y2B-pw-1LV">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="lo2-0B-QHk">
-                            <connections>
-                                <action selector="action:" destination="7UK-33-K8I" id="iPI-EF-Ei9"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1R2-Uw-eno" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1176" y="142"/>
-        </scene>
         <!--Toggle View Controller - Love Lyndir-->
         <scene sceneID="nJT-XH-5st">
             <objects>
@@ -109,31 +46,17 @@ Sole Proprietor, Lyndir.</string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content"> campaign that aims to make all of Lyndir's products available to everyone.
+                                        <string key="content"> campaign.
+We are making our products available to everyone, free of charge, and are giving professionals the tools to improve them.
 
-All Lyndir apps in this campaign are available </string>
+Instead of paying in advance, this campaign allows you the freedom to determine what Lyndir's apps are </string>
                                         <attributes>
                                             <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <font key="NSFont" size="16" name="HelveticaNeue-Light"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content="free of charge">
-                                        <attributes>
-                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue-LightItalic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">, fully functional and free of intrusive ads.  Instead, the campaign allows you the freedom to determine what Lyndir's apps are </string>
-                                        <attributes>
-                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue-Light"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="worth">
+                                    <fragment content="worth to you">
                                         <attributes>
                                             <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <font key="NSFont" size="16" name="HelveticaNeue"/>
@@ -141,10 +64,9 @@ All Lyndir apps in this campaign are available </string>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">.
+                                        <string key="content">: By loving Lyndir, you sign up for a monthly recurring subscription.  You gain no advantage over those that cannot afford to: it's a conscious choice of giving me the funds I need to maintain and expand these apps.
 
-By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yields no advantage over those that cannot afford to: it symbolizes your conscious choice of giving me the fuel I need to maintain and expand the apps in this campaign.
-</string>
+Get all our apps for free, try them out, and don't keep this a secret.  If you like what you see, consider signing up:</string>
                                         <attributes>
                                             <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <font key="NSFont" size="16" name="HelveticaNeue-Light"/>
@@ -283,9 +205,9 @@ By loving Lyndir, you sign up for a monthly recurring subscription.  Doing so yi
                                 <action selector="close:" destination="Wzd-TL-I1Y" id="2qN-K9-iAe"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Explain" id="nWh-IZ-QFm">
+                        <barButtonItem key="rightBarButtonItem" title="All Apps" id="nWh-IZ-QFm">
                             <connections>
-                                <segue destination="7UK-33-K8I" kind="push" id="cgH-6W-eXo"/>
+                                <action selector="apps:" destination="Wzd-TL-I1Y" id="BU9-rf-tDU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

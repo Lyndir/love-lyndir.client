@@ -161,7 +161,8 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     }
 
     [[NSNotificationCenter defaultCenter] postNotificationName:LLEmailAddressUpdatedNotification object:self];
-    [self sendReceipt:nil];
+    if (![self sendReceipt:nil])
+        [self updateLevel];
 }
 
 - (BOOL)receiptHandled {
