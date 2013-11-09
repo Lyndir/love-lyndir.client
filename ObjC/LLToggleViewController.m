@@ -41,7 +41,7 @@
     [[NSNotificationCenter defaultCenter]
             addObserverForName:LLEmailAddressUpdatedNotification object:nil queue:[NSOperationQueue mainQueue]
                     usingBlock:^(NSNotification *note) {
-                        [self.userNameButton setTitle:[LLModel sharedModel].emailAddress forState:UIControlStateNormal];
+                        [self.userNameButton setTitle:[self emailAddress] forState:UIControlStateNormal];
                     }];
     [[NSNotificationCenter defaultCenter]
             addObserverForName:LLPurchaseAvailabilityNotification object:nil queue:[NSOperationQueue mainQueue]
@@ -50,10 +50,19 @@
                     }];
 
     [self updateTogglePosition];
-    [self.userNameButton setTitle:[LLModel sharedModel].emailAddress forState:UIControlStateNormal];
+    [self.userNameButton setTitle:[self emailAddress] forState:UIControlStateNormal];
     [self updateAvailability];
 
     [super viewDidLoad];
+}
+
+- (NSString *)emailAddress {
+
+    NSString *emailAddress = [LLModel sharedModel].emailAddress;
+    if ([emailAddress length])
+        return emailAddress;
+
+    return @"Tap to set your email address.";
 }
 
 - (void)updateTogglePosition {
@@ -78,6 +87,7 @@
                          viewStyle:UIAlertViewStylePlainTextInput
                          initAlert:^(UIAlertView *alert, UITextField *firstField) {
                              firstField.text = [LLModel sharedModel].emailAddress;
+                             firstField.placeholder = @"E-mail address";
                          }
                  tappedButtonBlock:^(UIAlertView *alert, NSInteger buttonIndex) {
                      if (buttonIndex == [alert cancelButtonIndex])
