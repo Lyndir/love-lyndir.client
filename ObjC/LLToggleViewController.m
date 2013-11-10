@@ -88,12 +88,12 @@
 
 - (IBAction)onUserName:(id)sender {
 
-    [PearlAlert showAlertWithTitle:@"Email Address"
-                           message:@"Your email address is necessary to make your purchase available across all Lyndir apps."
+    [PearlAlert showAlertWithTitle:@"E-mail Address"
+                           message:@"Your email address is used to make your purchase available across all Lyndir apps."
                          viewStyle:UIAlertViewStylePlainTextInput
                          initAlert:^(UIAlertView *alert, UITextField *firstField) {
                              firstField.text = [LLModel sharedModel].emailAddress;
-                             firstField.placeholder = @"E-mail address";
+                             firstField.placeholder = @"eg. myname@icloud.com";
                          }
                  tappedButtonBlock:^(UIAlertView *alert, NSInteger buttonIndex) {
                      if (buttonIndex == [alert cancelButtonIndex])
@@ -237,6 +237,11 @@
     }
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
 
     return UIInterfaceOrientationPortrait;
@@ -245,6 +250,11 @@
 - (BOOL)prefersStatusBarHidden {
 
     return NO;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+
+    return UIStatusBarAnimationSlide;
 }
 
 #pragma mark - SKStoreProductViewControllerDelegate
