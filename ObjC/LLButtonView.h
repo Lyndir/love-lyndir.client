@@ -20,6 +20,14 @@
 
 @interface LLButtonView : UIButton
 
+/**
+ * Set this to the view controller responsible for this view.  It will be used to present child view controllers.
+ */
 @property(nonatomic, strong) UIViewController *viewController;
+
+/**
+ * Set this to YES if your app is in the Kids category.  It will cause a parental gate to appear before allowing access to the in-app purchase section.
+ */
+@property(nonatomic) BOOL kidsMode;
 
 @end

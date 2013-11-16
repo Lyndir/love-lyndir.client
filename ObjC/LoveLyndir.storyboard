@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="CFb-Vf-sPq">
-                                <rect key="frame" x="20" y="72" width="280" height="284"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" preferredMaxLayoutWidth="304" translatesAutoresizingMaskIntoConstraints="NO" id="CFb-Vf-sPq">
+                                <rect key="frame" x="8" y="72" width="304" height="284"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="1" constant="280" id="GSD-sV-IPv"/>
@@ -64,7 +64,7 @@ Instead of paying in advance, this campaign allows you the freedom to determine 
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">: By loving Lyndir, you sign up for a monthly recurring subscription.  You gain no advantage over those that cannot afford to: it's a conscious choice of giving me the funds I need to maintain and expand these apps.
+                                        <string key="content">: By loving Lyndir, you sign up for a monthly recurring subscription that is activated in each of our apps.  You gain no advantage over those that cannot afford to: it's a conscious choice of giving me the funds I need to maintain and expand these apps.
 
 Get all our apps for free, try them out, and don't keep this a secret.  If you like what you see, consider signing up:</string>
                                         <attributes>
@@ -184,9 +184,9 @@ Get all our apps for free, try them out, and don't keep this a secret.  If you l
                         <constraints>
                             <constraint firstItem="vJd-AB-16B" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="20" id="HgI-ur-fOk"/>
                             <constraint firstItem="kOy-4a-4Zs" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="20" id="JEE-If-wx4"/>
-                            <constraint firstItem="CFb-Vf-sPq" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="20" id="JPe-fT-vNw"/>
+                            <constraint firstItem="CFb-Vf-sPq" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="8" id="JPe-fT-vNw"/>
                             <constraint firstItem="G4l-yq-jvb" firstAttribute="top" secondItem="kOy-4a-4Zs" secondAttribute="bottom" id="NnA-zt-kwN"/>
-                            <constraint firstAttribute="trailing" secondItem="CFb-Vf-sPq" secondAttribute="trailing" constant="20" id="Nxl-ko-tCn"/>
+                            <constraint firstAttribute="trailing" secondItem="CFb-Vf-sPq" secondAttribute="trailing" constant="8" id="Nxl-ko-tCn"/>
                             <constraint firstAttribute="trailing" secondItem="vJd-AB-16B" secondAttribute="trailing" constant="20" id="PEb-B5-Gaq"/>
                             <constraint firstItem="vJd-AB-16B" firstAttribute="trailing" secondItem="HGP-rO-FpN" secondAttribute="trailing" id="QTq-vg-kXu"/>
                             <constraint firstItem="vJd-AB-16B" firstAttribute="bottom" secondItem="HGP-rO-FpN" secondAttribute="bottom" id="Voq-g0-VY9"/>
@@ -194,7 +194,7 @@ Get all our apps for free, try them out, and don't keep this a secret.  If you l
                             <constraint firstAttribute="trailing" secondItem="kOy-4a-4Zs" secondAttribute="trailing" constant="20" id="gQI-Iq-3Gi"/>
                             <constraint firstItem="vJd-AB-16B" firstAttribute="leading" secondItem="HGP-rO-FpN" secondAttribute="leading" id="gv2-Xa-uPr"/>
                             <constraint firstItem="vJd-AB-16B" firstAttribute="top" secondItem="HGP-rO-FpN" secondAttribute="top" id="mhv-AW-t1N"/>
-                            <constraint firstItem="CFb-Vf-sPq" firstAttribute="top" secondItem="Yml-2p-t8Z" secondAttribute="bottom" constant="20" symbolic="YES" id="our-KB-ZfT"/>
+                            <constraint firstItem="CFb-Vf-sPq" firstAttribute="top" secondItem="Yml-2p-t8Z" secondAttribute="bottom" constant="8" id="our-KB-ZfT"/>
                             <constraint firstItem="G4l-yq-jvb" firstAttribute="top" secondItem="vJd-AB-16B" secondAttribute="bottom" constant="28" id="pdI-gv-M1o"/>
                         </constraints>
                     </view>

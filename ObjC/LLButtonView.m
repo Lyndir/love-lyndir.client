@@ -18,6 +18,7 @@
 
 #import "LLButtonView.h"
 #import "LLModel.h"
+#import "PearlAlert.h"
 
 @implementation LLButtonView
 
@@ -63,6 +64,18 @@
 }
 
 - (void)didTapButton {
+
+    if (self.kidsMode)
+        // In kids mode, first show the parental gate.
+        [PearlAlert showParentalGate:^(BOOL continuing) {
+            if (continuing)
+                [self showLoveLyndir];
+        }];
+    else
+        [self showLoveLyndir];
+}
+
+- (void)showLoveLyndir {
 
     UIViewController *viewController = self.viewController;
     if (!viewController)
