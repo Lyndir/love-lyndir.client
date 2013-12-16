@@ -26,6 +26,8 @@
 #import "PearlLogger.h"
 #import "PearlUIUtils.h"
 
+#define LL_IN_APP_OPEN_HEIGHT 120
+
 @interface LLToggleViewController()<SKStoreProductViewControllerDelegate>
 @end
 
@@ -58,6 +60,7 @@
     [self updateTogglePosition];
     [self.userNameButton setTitle:[self emailAddress] forState:UIControlStateNormal];
     [self updateAvailability];
+    [self toggleInApp:[LLModel sharedModel].level == LLLoveLevelFree animated:NO];
 
     [super viewDidLoad];
 }
@@ -72,6 +75,11 @@
 }
 
 - (void)updateTogglePosition {
+
+    [self.issueView loadRequest:[NSURLRequest requestWithURL:
+            [LLModel sharedModel].level == LLLoveLevelFree?
+                    [NSURL URLWithString:@"http://love.lyndir.com/about.html"]:
+                    [NSURL URLWithString:@"http://love.lyndir.com/issues/current.html"]]];
 
     self.togglePositionConstraint.constant = [self togglePositionConstantForLevel:[LLModel sharedModel].level];
     [self updateToggleAppearanceAndModel];
@@ -178,6 +186,7 @@
     else
         pannedLevel = LLLoveLevelFree;
     [self.toggleButton setImage:[[LLModel sharedModel] heartImageForLevel:pannedLevel] forState:UIControlStateNormal];
+    [self.inappToggleButton setImage:[[LLModel sharedModel] heartImageForLevel:pannedLevel] forState:UIControlStateNormal];
 
     for (LLLoveLevel level = LLLoveLevelMIN; level <= LLLoveLevelMAX; ++level) {
         UILabel *label;
@@ -208,6 +217,28 @@
 - (IBAction)apps:(id)sender {
 
     [self showApps:YES];
+}
+
+- (IBAction)toggleInApp:(id)sender {
+
+    [self toggleInApp:self.inAppContainer.frame.size.height < LL_IN_APP_OPEN_HEIGHT animated:YES];
+}
+
+- (void)toggleInApp:(BOOL)visible animated:(BOOL)animated {
+
+    if (animated) {
+        [UIView animateWithDuration:0.3 animations:^{
+            [self toggleInApp:visible animated:NO];
+        }];
+        return;
+    }
+
+    CGFloat collapsedHeight = self.userNameButton.frame.size.height;
+    if (visible)
+        self.inAppContainerHeight.constant = LL_IN_APP_OPEN_HEIGHT;
+    else
+        self.inAppContainerHeight.constant = collapsedHeight;
+    [self.inAppContainer layoutIfNeeded];
 }
 
 - (void)showApps:(BOOL)inApp {

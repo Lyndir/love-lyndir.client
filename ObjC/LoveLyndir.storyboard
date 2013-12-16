@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XyJ-Bw-Nvu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XyJ-Bw-Nvu">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Toggle View Controller - Love Lyndir-->
@@ -10,192 +10,173 @@
             <objects>
                 <viewController id="Wzd-TL-I1Y" customClass="LLToggleViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Yml-2p-t8Z"/>
-                        <viewControllerLayoutGuide type="bottom" id="G4l-yq-jvb"/>
+                        <viewControllerLayoutGuide type="top" id="y1o-Q2-P7x"/>
+                        <viewControllerLayoutGuide type="bottom" id="jQh-BR-Jda"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1vw-eH-PrA">
+                    <view key="view" contentMode="scaleToFill" id="92z-gX-E1C" userLabel="Root">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" preferredMaxLayoutWidth="304" translatesAutoresizingMaskIntoConstraints="NO" id="CFb-Vf-sPq">
-                                <rect key="frame" x="8" y="72" width="304" height="284"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0m-Qr-szD">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="1" constant="280" id="GSD-sV-IPv"/>
-                                </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="Love Lyndir">
-                                        <attributes>
-                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" is a ">
-                                        <attributes>
-                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue-Light"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="freedom">
-                                        <attributes>
-                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue-LightItalic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content"> campaign.
-We are making our products available to everyone, free of charge, and are giving professionals the tools to improve them.
-
-Instead of paying in advance, this campaign allows you the freedom to determine what Lyndir's apps are </string>
-                                        <attributes>
-                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue-Light"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="worth to you">
-                                        <attributes>
-                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">: By loving Lyndir, you sign up for a monthly recurring subscription that is activated in each of our apps.  You gain no advantage over those that cannot afford to: it's a conscious choice of giving me the funds I need to maintain and expand these apps.
-
-Get all our apps for free, try them out, and don't keep this a secret.  If you like what you see, consider signing up:</string>
-                                        <attributes>
-                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue-Light"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for the iTunes store." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" enabled="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="HGP-rO-FpN">
-                                <rect key="frame" x="20" y="364" width="280" height="88"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJd-AB-16B">
-                                <rect key="frame" x="20" y="364" width="280" height="88"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Wzd-TL-I1Y" id="BNl-fz-B2F"/>
+                                </connections>
+                            </webView>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vw-eH-PrA" userLabel="SubscriptionContainer">
+                                <rect key="frame" x="0.0" y="360" width="320" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXW-Gi-iZ0">
-                                        <rect key="frame" x="25" y="0.0" width="32" height="30"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for the iTunes store." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" enabled="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="HGP-rO-FpN" userLabel="ErrorLabel">
+                                        <rect key="frame" x="20" y="4" width="280" height="85"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="vJd-AB-16B" userLabel="Subscription">
+                                        <rect key="frame" x="20" y="0.0" width="280" height="93"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXW-Gi-iZ0" userLabel="SubscriptionButton">
+                                                <rect key="frame" x="25" y="8" width="32" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="mqt-DS-vFi"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" image="love-lyndir.heart.grey.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="B8g-0Z-plN" appends="YES" id="VEJ-fF-rs5"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="love-lyndir.picker.png" translatesAutoresizingMaskIntoConstraints="NO" id="hbj-yw-kOi" userLabel="Bar">
+                                                <rect key="frame" x="38" y="46" width="204" height="11"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="204" id="ZPW-08-4wM"/>
+                                                    <constraint firstAttribute="height" constant="11" id="a72-rj-dXv"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="VaN-0q-Nxz" userLabel="Free">
+                                                <rect key="frame" x="0.0" y="65" width="80" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="a7K-BU-7b0"/>
+                                                    <constraint firstAttribute="height" constant="31" id="aWd-xt-ZLV"/>
+                                                </constraints>
+                                                <string key="text">Free
+ </string>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="8T9-b0-uIb" userLabel="Like">
+                                                <rect key="frame" x="100" y="65" width="80" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="M6e-R5-Slv"/>
+                                                    <constraint firstAttribute="height" constant="31" id="auU-xt-NoH"/>
+                                                </constraints>
+                                                <string key="text">Like
+0.99$</string>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                <color key="textColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="ahc-vK-4H1" userLabel="Love">
+                                                <rect key="frame" x="200" y="65" width="80" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="31" id="jOx-HA-Cv2"/>
+                                                    <constraint firstAttribute="width" constant="80" id="w8l-se-f5y"/>
+                                                </constraints>
+                                                <string key="text">Love
+4.99$</string>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="ahc-vK-4H1" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="ELv-5w-sa9"/>
+                                            <constraint firstItem="hbj-yw-kOi" firstAttribute="centerX" secondItem="VaN-0q-Nxz" secondAttribute="centerX" constant="100" id="JJl-On-S3u"/>
+                                            <constraint firstItem="hXW-Gi-iZ0" firstAttribute="top" secondItem="vJd-AB-16B" secondAttribute="top" constant="8" id="Nmv-in-k7p"/>
+                                            <constraint firstItem="hXW-Gi-iZ0" firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" constant="-99" id="OGL-8C-n6a"/>
+                                            <constraint firstItem="hbj-yw-kOi" firstAttribute="top" secondItem="hXW-Gi-iZ0" secondAttribute="bottom" constant="8" id="RGk-Wg-FAE"/>
+                                            <constraint firstAttribute="height" constant="93" id="mtS-fh-jdr"/>
+                                            <constraint firstItem="8T9-b0-uIb" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="o1m-5J-sFF"/>
+                                            <constraint firstItem="ahc-vK-4H1" firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" constant="100" id="t6g-A2-7T4"/>
+                                            <constraint firstItem="hbj-yw-kOi" firstAttribute="centerX" secondItem="8T9-b0-uIb" secondAttribute="centerX" id="vGl-N2-Mf6"/>
+                                            <constraint firstItem="VaN-0q-Nxz" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="vX8-TG-1uK"/>
+                                            <constraint firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" id="xZz-vD-yvI"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOy-4a-4Zs" userLabel="EmailButton">
+                                        <rect key="frame" x="20" y="93" width="280" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <size key="titleShadowOffset" width="0.0" height="1"/>
+                                        <state key="normal" title="Tap to set your email address.">
+                                            <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
+                                            <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onUserName:" destination="Wzd-TL-I1Y" eventType="touchUpInside" id="s3Z-Td-E5q"/>
+                                            <outletCollection property="gestureRecognizers" destination="5nL-wy-HUT" appends="YES" id="LjI-o8-r7l"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4OC-0e-YkW">
+                                        <rect key="frame" x="299" y="99" width="16" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="mqt-DS-vFi"/>
+                                            <constraint firstAttribute="height" constant="16" id="KKx-zs-q2A"/>
+                                            <constraint firstAttribute="width" constant="16" id="V3O-T6-rVZ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" image="love-lyndir.heart.grey.png">
+                                        <state key="normal" image="love-lyndir.button.green.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="B8g-0Z-plN" appends="YES" id="VEJ-fF-rs5"/>
+                                            <action selector="toggleInApp:" destination="Wzd-TL-I1Y" eventType="touchUpInside" id="NPd-wx-ePH"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="love-lyndir.picker.png" translatesAutoresizingMaskIntoConstraints="NO" id="hbj-yw-kOi">
-                                        <rect key="frame" x="38" y="38" width="204" height="11"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="204" id="ZPW-08-4wM"/>
-                                            <constraint firstAttribute="height" constant="11" id="a72-rj-dXv"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="8T9-b0-uIb">
-                                        <rect key="frame" x="100" y="57" width="80" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="M6e-R5-Slv"/>
-                                            <constraint firstAttribute="height" constant="31" id="auU-xt-NoH"/>
-                                        </constraints>
-                                        <string key="text">Like
-0.99$</string>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                        <color key="textColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="VaN-0q-Nxz">
-                                        <rect key="frame" x="0.0" y="57" width="80" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="a7K-BU-7b0"/>
-                                            <constraint firstAttribute="height" constant="31" id="aWd-xt-ZLV"/>
-                                        </constraints>
-                                        <string key="text">Free
- </string>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="ahc-vK-4H1">
-                                        <rect key="frame" x="200" y="57" width="80" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="31" id="jOx-HA-Cv2"/>
-                                            <constraint firstAttribute="width" constant="80" id="w8l-se-f5y"/>
-                                        </constraints>
-                                        <string key="text">Love
-4.99$</string>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="ahc-vK-4H1" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="ELv-5w-sa9"/>
-                                    <constraint firstItem="hbj-yw-kOi" firstAttribute="centerX" secondItem="VaN-0q-Nxz" secondAttribute="centerX" constant="100" id="JJl-On-S3u"/>
-                                    <constraint firstItem="hXW-Gi-iZ0" firstAttribute="top" secondItem="vJd-AB-16B" secondAttribute="top" id="Nmv-in-k7p"/>
-                                    <constraint firstItem="hXW-Gi-iZ0" firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" constant="-99" id="OGL-8C-n6a"/>
-                                    <constraint firstItem="hbj-yw-kOi" firstAttribute="top" secondItem="hXW-Gi-iZ0" secondAttribute="bottom" constant="8" id="RGk-Wg-FAE"/>
-                                    <constraint firstAttribute="height" constant="88" id="mtS-fh-jdr"/>
-                                    <constraint firstItem="8T9-b0-uIb" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="o1m-5J-sFF"/>
-                                    <constraint firstItem="ahc-vK-4H1" firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" constant="100" id="t6g-A2-7T4"/>
-                                    <constraint firstItem="hbj-yw-kOi" firstAttribute="centerX" secondItem="8T9-b0-uIb" secondAttribute="centerX" id="vGl-N2-Mf6"/>
-                                    <constraint firstItem="VaN-0q-Nxz" firstAttribute="top" secondItem="hbj-yw-kOi" secondAttribute="bottom" constant="8" id="vX8-TG-1uK"/>
-                                    <constraint firstAttribute="centerX" secondItem="hbj-yw-kOi" secondAttribute="centerX" id="xZz-vD-yvI"/>
+                                    <constraint firstItem="HGP-rO-FpN" firstAttribute="trailing" secondItem="vJd-AB-16B" secondAttribute="trailing" id="1k1-oz-qoC"/>
+                                    <constraint firstItem="HGP-rO-FpN" firstAttribute="top" secondItem="vJd-AB-16B" secondAttribute="top" constant="4" id="Cfg-1H-9cG"/>
+                                    <constraint firstItem="kOy-4a-4Zs" firstAttribute="top" secondItem="vJd-AB-16B" secondAttribute="bottom" id="Dyd-hb-4ZV"/>
+                                    <constraint firstItem="vJd-AB-16B" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="20" id="HgI-ur-fOk"/>
+                                    <constraint firstItem="kOy-4a-4Zs" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="20" id="JEE-If-wx4"/>
+                                    <constraint firstAttribute="trailing" secondItem="vJd-AB-16B" secondAttribute="trailing" constant="20" id="PEb-B5-Gaq"/>
+                                    <constraint firstAttribute="bottom" secondItem="kOy-4a-4Zs" secondAttribute="bottom" id="SDz-mI-dR8"/>
+                                    <constraint firstAttribute="trailing" secondItem="4OC-0e-YkW" secondAttribute="trailing" constant="5" id="ZZb-86-QyV"/>
+                                    <constraint firstAttribute="bottom" secondItem="4OC-0e-YkW" secondAttribute="bottom" constant="5" id="d0s-ua-yRK"/>
+                                    <constraint firstAttribute="trailing" secondItem="kOy-4a-4Zs" secondAttribute="trailing" constant="20" id="gQI-Iq-3Gi"/>
+                                    <constraint firstItem="HGP-rO-FpN" firstAttribute="bottom" secondItem="vJd-AB-16B" secondAttribute="bottom" constant="-4" id="iME-HP-2RR"/>
+                                    <constraint firstAttribute="height" constant="120" id="jIS-WB-ovs"/>
+                                    <constraint firstItem="HGP-rO-FpN" firstAttribute="leading" secondItem="vJd-AB-16B" secondAttribute="leading" id="sZn-tN-0f6"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOy-4a-4Zs">
-                                <rect key="frame" x="20" y="453" width="280" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                <size key="titleShadowOffset" width="0.0" height="1"/>
-                                <state key="normal" title="Tap to set your email address.">
-                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
-                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onUserName:" destination="Wzd-TL-I1Y" eventType="touchUpInside" id="s3Z-Td-E5q"/>
-                                    <outletCollection property="gestureRecognizers" destination="5nL-wy-HUT" appends="YES" id="LjI-o8-r7l"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vJd-AB-16B" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="20" id="HgI-ur-fOk"/>
-                            <constraint firstItem="kOy-4a-4Zs" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="20" id="JEE-If-wx4"/>
-                            <constraint firstItem="CFb-Vf-sPq" firstAttribute="leading" secondItem="1vw-eH-PrA" secondAttribute="leading" constant="8" id="JPe-fT-vNw"/>
-                            <constraint firstItem="G4l-yq-jvb" firstAttribute="top" secondItem="kOy-4a-4Zs" secondAttribute="bottom" id="NnA-zt-kwN"/>
-                            <constraint firstAttribute="trailing" secondItem="CFb-Vf-sPq" secondAttribute="trailing" constant="8" id="Nxl-ko-tCn"/>
-                            <constraint firstAttribute="trailing" secondItem="vJd-AB-16B" secondAttribute="trailing" constant="20" id="PEb-B5-Gaq"/>
-                            <constraint firstItem="vJd-AB-16B" firstAttribute="trailing" secondItem="HGP-rO-FpN" secondAttribute="trailing" id="QTq-vg-kXu"/>
-                            <constraint firstItem="vJd-AB-16B" firstAttribute="bottom" secondItem="HGP-rO-FpN" secondAttribute="bottom" id="Voq-g0-VY9"/>
-                            <constraint firstItem="vJd-AB-16B" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CFb-Vf-sPq" secondAttribute="bottom" constant="8" symbolic="YES" id="fba-Dm-tVN"/>
-                            <constraint firstAttribute="trailing" secondItem="kOy-4a-4Zs" secondAttribute="trailing" constant="20" id="gQI-Iq-3Gi"/>
-                            <constraint firstItem="vJd-AB-16B" firstAttribute="leading" secondItem="HGP-rO-FpN" secondAttribute="leading" id="gv2-Xa-uPr"/>
-                            <constraint firstItem="vJd-AB-16B" firstAttribute="top" secondItem="HGP-rO-FpN" secondAttribute="top" id="mhv-AW-t1N"/>
-                            <constraint firstItem="CFb-Vf-sPq" firstAttribute="top" secondItem="Yml-2p-t8Z" secondAttribute="bottom" constant="8" id="our-KB-ZfT"/>
-                            <constraint firstItem="G4l-yq-jvb" firstAttribute="top" secondItem="vJd-AB-16B" secondAttribute="bottom" constant="28" id="pdI-gv-M1o"/>
+                            <constraint firstAttribute="trailing" secondItem="1vw-eH-PrA" secondAttribute="trailing" id="0z9-YP-SeQ"/>
+                            <constraint firstItem="V0m-Qr-szD" firstAttribute="top" secondItem="92z-gX-E1C" secondAttribute="top" id="9xz-w1-sY2"/>
+                            <constraint firstItem="jQh-BR-Jda" firstAttribute="top" secondItem="1vw-eH-PrA" secondAttribute="bottom" id="DJX-Ex-Oyz"/>
+                            <constraint firstAttribute="trailing" secondItem="V0m-Qr-szD" secondAttribute="trailing" id="Hv6-V5-YKq"/>
+                            <constraint firstItem="jQh-BR-Jda" firstAttribute="top" secondItem="V0m-Qr-szD" secondAttribute="bottom" id="I53-uh-ddy"/>
+                            <constraint firstItem="1vw-eH-PrA" firstAttribute="leading" secondItem="92z-gX-E1C" secondAttribute="leading" id="PAY-gc-ryf"/>
+                            <constraint firstItem="V0m-Qr-szD" firstAttribute="leading" secondItem="92z-gX-E1C" secondAttribute="leading" id="RSs-cu-zg4"/>
+                            <constraint firstItem="jQh-BR-Jda" firstAttribute="top" secondItem="1vw-eH-PrA" secondAttribute="bottom" id="WXp-Ql-PwR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Love Lyndir" id="OZG-O6-xEE">
@@ -214,6 +195,10 @@ Get all our apps for free, try them out, and don't keep this a secret.  If you l
                     <connections>
                         <outlet property="availableContainer" destination="vJd-AB-16B" id="5AN-xw-pXx"/>
                         <outlet property="freePriceLabel" destination="VaN-0q-Nxz" id="9o5-Kh-M0K"/>
+                        <outlet property="inAppContainer" destination="1vw-eH-PrA" id="9F0-c3-nuw"/>
+                        <outlet property="inAppContainerHeight" destination="jIS-WB-ovs" id="YB8-yf-UyB"/>
+                        <outlet property="inappToggleButton" destination="4OC-0e-YkW" id="4Bz-SI-ttC"/>
+                        <outlet property="issueView" destination="V0m-Qr-szD" id="oIg-K0-Tf5"/>
                         <outlet property="likePriceLabel" destination="8T9-b0-uIb" id="GvY-5Q-qfN"/>
                         <outlet property="lovePriceLabel" destination="ahc-vK-4H1" id="tdp-MT-wsc"/>
                         <outlet property="toggleButton" destination="hXW-Gi-iZ0" id="Iec-5d-fEu"/>
@@ -254,6 +239,7 @@ Get all our apps for free, try them out, and don't keep this a secret.  If you l
         </scene>
     </scenes>
     <resources>
+        <image name="love-lyndir.button.green.png" width="32" height="30"/>
         <image name="love-lyndir.heart.grey.png" width="32" height="30"/>
         <image name="love-lyndir.picker.png" width="204" height="11"/>
     </resources>
