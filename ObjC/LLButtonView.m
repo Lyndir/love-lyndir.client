@@ -37,14 +37,11 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)coder {
+- (void)awakeFromNib {
 
-    if (!(self = [super initWithCoder:coder]))
-        return nil;
+    [super awakeFromNib];
 
     [self setup];
-
-    return self;
 }
 
 - (void)setup {
