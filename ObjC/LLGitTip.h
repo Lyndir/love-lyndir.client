@@ -25,5 +25,5 @@
  */
 @property(nonatomic) BOOL kidsMode;
 
-@property(nonatomic, copy) NSString *appURL;
+@property(nonatomic, copy) NSString *iTunesID;
 @end

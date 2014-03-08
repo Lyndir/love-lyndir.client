@@ -50,8 +50,6 @@
 
 - (void)setup {
 
-    self.appURL = PearlString(@"https://github.com/Lyndir/%@", [PearlInfoPlist get].CFBundleName);
-    
     [self addTarget:self action:@selector(didTapButton) forControlEvents:UIControlEventTouchUpInside];
     [self setImage:[UIImage imageNamed:@"gittip.png"] forState:UIControlStateNormal];
     [self sizeToFit];
@@ -82,19 +80,26 @@
 
 - (void)showGitTip {
 
-    [PearlAlert showAlertWithTitle:PearlString( @"%@ And Freedom", [PearlInfoPlist get].CFBundleDisplayName )
-                           message:@"I've made this app free of charge and open source.\n"
-                                           @"You can learn from or modify it, but consider a tip so I can keep doing this."
+    [PearlAlert showAlertWithTitle:@"Freedom"
+                           message:PearlString(
+                                   @"I believe in a free economy where people put their own price tag on the things they use and love.\n"
+                                           @"If you feel %@ is worth it, consider putting a price on it.",
+                                   [PearlInfoPlist get].CFBundleDisplayName )
                          viewStyle:UIAlertViewStyleDefault initAlert:nil
                  tappedButtonBlock:^(UIAlertView *alert, NSInteger buttonIndex) {
                      if (buttonIndex == [alert cancelButtonIndex])
                          return;
                      if (buttonIndex == [alert firstOtherButtonIndex])
-                         [UIApp openURL:[NSURL URLWithString:self.appURL]];
+                         [self.window.rootViewController presentViewController:
+                                 [[UIActivityViewController alloc] initWithActivityItems:@[
+                                         PearlString( @"I got %@ for free and it's awesome.", [PearlInfoPlist get].CFBundleDisplayName ),
+                                         [NSURL URLWithString:PearlString( @"https://itunes.apple.com/artist/%@", self.iTunesID )]
+                                 ]                                 applicationActivities:nil]
+                                                                      animated:YES completion:nil];
                      if (buttonIndex == [alert firstOtherButtonIndex] + 1)
                          [UIApp openURL:[NSURL URLWithString:@"https://www.gittip.com/lhunath/"]];
                  }
-                       cancelTitle:[PearlStrings get].commonButtonBack otherTitles:@"Learn", @"Tip", nil];
+                       cancelTitle:[PearlStrings get].commonButtonBack otherTitles:@"Share", @"Tip", nil];
 }
 
 @end
