@@ -382,13 +382,13 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
                                                  _purchaseInitiatorVC = nil;
                                              } cancelTitle:[PearlStrings get].commonButtonDone otherTitles:@"Share", nil];
 
-                            NSInteger activeSubscriptions = [NSNullToNil(responseObject[@"activeSubscriptions"]) integerValue];
+                            int activeSubscriptions = [NSNullToNil(responseObject[@"activeSubscriptions"]) intValue];
                             if (activeSubscriptions > 1)
                                 [PearlAlert showAlertWithTitle:@"Multiple Subscriptions" message:
                                         PearlString( @"It looks like you have %d active subscriptions.\n"
                                                 @"Only you can cancel subscriptions.  "
                                                 @"You do this from the App Store's “Manage Subscriptions” page.",
-                                                activeSubscriptions )
+                                        activeSubscriptions )
                                                      viewStyle:UIAlertViewStyleDefault initAlert:nil
                                              tappedButtonBlock:^(UIAlertView *alert, NSInteger buttonIndex) {
                                                  if (buttonIndex == [alert cancelButtonIndex])
@@ -461,8 +461,8 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         NSString *entity = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         if (httpResponse.statusCode >= 300) {
-            err(@"Unsuccessful response code %@(%d): %@", //
-            [NSHTTPURLResponse localizedStringForStatusCode:httpResponse.statusCode], httpResponse.statusCode, entity);
+            err(@"Unsuccessful response code %@(%ld): %@", //
+            [NSHTTPURLResponse localizedStringForStatusCode:httpResponse.statusCode], (long)httpResponse.statusCode, entity);
             failureHandler( httpResponse, entity );
             return;
         }
