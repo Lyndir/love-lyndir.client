@@ -229,7 +229,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
 - (void)restorePurchases {
 
     [_purchasingActivity cancelOverlayAnimated:YES];
-    _purchasingActivity = [PearlOverlay showOverlayWithTitle:@"Restoring Purchases"];
+    _purchasingActivity = [PearlOverlay showProgressOverlayWithTitle:@"Restoring Purchases"];
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
@@ -550,8 +550,8 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     for (SKPaymentTransaction *transaction in transactions)
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchasing:
-                _purchasingActivity = [PearlOverlay showOverlayWithTitle:PearlString( @"Purchasing %@",
-                        ((SKProduct *)(_products)[transaction.payment.productIdentifier]).localizedTitle )];
+                _purchasingActivity = [PearlOverlay showProgressOverlayWithTitle:PearlString( @"Purchasing %@",
+                ((SKProduct *)(_products)[transaction.payment.productIdentifier]).localizedTitle )];
                 break;
             case SKPaymentTransactionStateFailed:
                 err( @"In-App Purchase failed: %@", transaction.error );
