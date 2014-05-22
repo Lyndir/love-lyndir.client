@@ -385,10 +385,10 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
                             int activeSubscriptions = [NSNullToNil(responseObject[@"activeSubscriptions"]) intValue];
                             if (activeSubscriptions > 1)
                                 [PearlAlert showAlertWithTitle:@"Multiple Subscriptions" message:
-                                        PearlString( @"It looks like you have %d active subscriptions.\n"
+                                        PearlString( @"It looks like you have %ld active subscriptions.\n"
                                                 @"Only you can cancel subscriptions.  "
                                                 @"You do this from the App Store's “Manage Subscriptions” page.",
-                                        activeSubscriptions )
+                                                (long)activeSubscriptions )
                                                      viewStyle:UIAlertViewStyleDefault initAlert:nil
                                              tappedButtonBlock:^(UIAlertView *alert, NSInteger buttonIndex) {
                                                  if (buttonIndex == [alert cancelButtonIndex])
