@@ -317,7 +317,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
 
     SKProduct *product = [self productForLevel:level];
     [_priceFormatter setLocale:product.priceLocale];
-    return IfNotNilElse([_priceFormatter stringFromNumber:product.price], @"");
+    return [_priceFormatter stringFromNumber:product.price]?: @"";
 }
 
 /**
