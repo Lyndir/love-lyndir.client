@@ -50,8 +50,6 @@
 
 - (void)setup {
 
-    self.appURL = PearlString(@"https://github.com/Lyndir/%@", [PearlInfoPlist get].CFBundleName);
-
     [self addTarget:self action:@selector(didTapButton) forControlEvents:UIControlEventTouchUpInside];
     [self setImage:[UIImage imageNamed:@"gittip.png"] forState:UIControlStateNormal];
     [self sizeToFit];
