@@ -549,6 +549,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
     dbg(@"Updated transactions: %@", transactions);
     for (SKPaymentTransaction *transaction in transactions)
         switch (transaction.transactionState) {
+            case SKPaymentTransactionStateDeferred:
             case SKPaymentTransactionStatePurchasing:
                 _purchasingActivity = [PearlOverlay showProgressOverlayWithTitle:PearlString( @"Purchasing %@",
                 ((SKProduct *)(_products)[transaction.payment.productIdentifier]).localizedTitle )];
