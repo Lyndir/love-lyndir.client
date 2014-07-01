@@ -81,7 +81,7 @@
 - (void)showGitTip {
 
     [PearlAlert showAlertWithTitle:@"Freedom"
-                           message:PearlString(
+                           message:strf(
                                    @"I believe in a free economy where people put their own price tag on the things they use and love.\n"
                                            @"If you feel %@ is worth it, consider putting a price on it.",
                                    [PearlInfoPlist get].CFBundleDisplayName )
@@ -92,8 +92,8 @@
                      if (buttonIndex == [alert firstOtherButtonIndex])
                          [self.window.rootViewController presentViewController:
                                  [[UIActivityViewController alloc] initWithActivityItems:@[
-                                         PearlString( @"I got %@ for free and it's awesome.", [PearlInfoPlist get].CFBundleDisplayName ),
-                                         [NSURL URLWithString:PearlString( @"https://itunes.apple.com/artist/%@", self.iTunesID )]
+                                         strf( @"I got %@ for free and it's awesome.", [PearlInfoPlist get].CFBundleDisplayName ),
+                                         [NSURL URLWithString:strf( @"https://itunes.apple.com/artist/%@", self.iTunesID )]
                                  ]                                 applicationActivities:nil]
                                                                       animated:YES completion:nil];
                      if (buttonIndex == [alert firstOtherButtonIndex] + 1)

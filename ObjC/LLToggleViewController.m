@@ -202,7 +202,7 @@
                 break;
         }
         label.hidden = pannedLevel != level;
-        label.text = PearlString( @"%@\n%@",
+        label.text = strf( @"%@\n%@",
                 [[LLModel sharedModel] levelTitleForLevel:level], [[LLModel sharedModel] priceStringForLevel:level] );
     }
 

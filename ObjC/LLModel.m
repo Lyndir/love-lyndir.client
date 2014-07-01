@@ -37,10 +37,10 @@
 #define LL_OPAQUE_KEY [@"DEVELOPMENT" dataUsingEncoding:NSUTF8StringEncoding]
 #endif
 #ifdef DEBUG
-#define LL_API_USER(email) PearlString(@"%@/app/rest/user/%@;mode=SANDBOX", LL_HOST, [email encodeURL])
+#define LL_API_USER(email) strf(@"%@/app/rest/user/%@;mode=SANDBOX", LL_HOST, [email encodeURL])
 #define LL_APPLE_MANAGE [NSURL URLWithString:@"https://sandbox.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions"]
 #else
-#define LL_API_USER(email) PearlString(@"%@/app/rest/user/%@", LL_HOST, [email encodeURL])
+#define LL_API_USER(email) strf(@"%@/app/rest/user/%@", LL_HOST, [email encodeURL])
 #define LL_APPLE_MANAGE [NSURL URLWithString:@"https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions"]
 #endif
 
@@ -296,9 +296,9 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
         case LLLoveLevelFree:
             return nil;
         case LLLoveLevelLiked:
-            return PearlString( @"%@.love.liked", [[NSBundle mainBundle] bundleIdentifier] );
+            return strf( @"%@.love.liked", [[NSBundle mainBundle] bundleIdentifier] );
         case LLLoveLevelLoved:
-            return PearlString( @"%@.love.loved", [[NSBundle mainBundle] bundleIdentifier] );
+            return strf( @"%@.love.loved", [[NSBundle mainBundle] bundleIdentifier] );
     }
 
     return nil;
@@ -372,7 +372,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
                             self.receiptHandled = YES;
 
                             if (_purchaseInitiatorVC)
-                                [PearlAlert showAlertWithTitle:@"Thanks!" message:PearlString( @"Thanks for %@ Lyndir's products.",
+                                [PearlAlert showAlertWithTitle:@"Thanks!" message:strf( @"Thanks for %@ Lyndir's products.",
                                         self.level == LLLoveLevelLiked? @"liking": @"loving" )
                                                      viewStyle:UIAlertViewStyleDefault initAlert:nil
                                              tappedButtonBlock:^(UIAlertView *alert, NSInteger buttonIndex) {
@@ -385,7 +385,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
                             int activeSubscriptions = [NSNullToNil(responseObject[@"activeSubscriptions"]) intValue];
                             if (activeSubscriptions > 1)
                                 [PearlAlert showAlertWithTitle:@"Multiple Subscriptions" message:
-                                        PearlString( @"It looks like you have %ld active subscriptions.\n"
+                                        strf( @"It looks like you have %ld active subscriptions.\n"
                                                 @"Only you can cancel subscriptions.  "
                                                 @"You do this from the App Store's “Manage Subscriptions” page.",
                                                 (long)activeSubscriptions )
@@ -551,7 +551,7 @@ NSString *const LLPurchaseAvailabilityNotification = @"LLPurchaseAvailabilityNot
         switch (transaction.transactionState) {
             case SKPaymentTransactionStateDeferred:
             case SKPaymentTransactionStatePurchasing:
-                _purchasingActivity = [PearlOverlay showProgressOverlayWithTitle:PearlString( @"Purchasing %@",
+                _purchasingActivity = [PearlOverlay showProgressOverlayWithTitle:strf( @"Purchasing %@",
                 ((SKProduct *)(_products)[transaction.payment.productIdentifier]).localizedTitle )];
                 break;
             case SKPaymentTransactionStateFailed:
